@@ -1,0 +1,9 @@
+<library path="cobot_demo" >
+  <class name="cobot_demo/DemoPanel"
+         type="cobot_demo::DemoPanel" 
+         base_class_type="rviz_common::Panel">
+    <description>
+      Fun Cobot Demo
+    </description>
+  </class>
+</library>

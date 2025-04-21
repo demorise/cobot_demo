@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cobot_demo</name>
+  <version>0.0.0</version>
+  <description>Drive Crusher Package</description>
+
+  <maintainer email="demola.oris@gmail.com">Ademola</maintainer>
+
+  <license>TO DO</license>
+
+  <author>Ademola</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <build_depend>qtbase5-dev</build_depend>
+
+  <exec_depend>libqt5-core</exec_depend>
+  <exec_depend>libqt5-gui</exec_depend>
+  <exec_depend>libqt5-opengl</exec_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+
+  <depend>rclcpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>moveit</depend>
+  <depend>moveit_core</depend>
+  <depend>moveit_ros_planning</depend>
+  <depend>moveit_ros_planning_interface</depend>
+  <depend>image_transport</depend>
+  <depend>cv_bridge</depend>
+  
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
