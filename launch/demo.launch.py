@@ -140,7 +140,7 @@ def generate_launch_description():
             'xacro',
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", description_file]
+                [FindPackageShare("cobot_demo"), "urdf", description_file]
             ),
             " ",
             "joint_limit_params:=",
@@ -178,7 +178,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", moveit_config_file]
+                [FindPackageShare("cobot_demo"), "urdf", moveit_config_file]
             ),
             " ",
             "name:=",

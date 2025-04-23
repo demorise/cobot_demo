@@ -39,7 +39,7 @@ namespace cobot_demo
     {
         std::thread t = std::thread([this]()
             {
-                rc_.planToJointPose({30.0, 30.0, 30.0, 30.0, 30.0, 0.0});
+                rc_.planToJointPose({62.0, 36.0, -43.0, 98.0, -91.0, -29.0});
                 rclcpp::sleep_for(std::chrono::milliseconds(1500));
                 rc_.executeTrajectory();
             });

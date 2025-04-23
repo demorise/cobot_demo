@@ -30,7 +30,7 @@ public:
 
     std::string camera_topic = "/image_raw";
     std::string output_topic = "/aruco_image";
-    marker_size_ = 0.1;
+    marker_size_ = 0.0254;
 
     // Initialize ArUco detector
     dictionary_ = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
