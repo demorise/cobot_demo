@@ -21,6 +21,9 @@ namespace robot_commander
     
     tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
+    RCLCPP_WARN_STREAM(node_->get_logger(), "==========================A:"<<move_group_interface_.getEndEffectorLink()); 
+    RCLCPP_WARN_STREAM(node_->get_logger(), "==========================B:"<<move_group_interface_.getEndEffector()); 
+
   }
 
   RobotCommander::~RobotCommander()
@@ -97,7 +100,7 @@ namespace robot_commander
   bool RobotCommander::getTargetPose(geometry_msgs::msg::Pose& target_pose)
   {
     geometry_msgs::msg::Pose pose;
-    getPose("gripper", "link6", pose);
+    getPose("gripper", "gripper_left3", pose);
     geometry_msgs::msg::TransformStamped t;
     getTransform("base_link", "target", t);
     target_pose = applyTransform(pose, t);

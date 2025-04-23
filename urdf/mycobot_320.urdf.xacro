@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="mycobot_320">
 
    <!-- Robot name parameter -->
    <xacro:arg name="name" default="mycobot_320"/>
@@ -9,12 +9,12 @@
 
    <!-- Parameters -->
    <xacro:arg name="prefix" default="" />
-   <xacro:arg name="joint_limit_params" default=""/>
-   <xacro:arg name="kinematics_params" default=""/>
-   <xacro:arg name="physical_params" default=""/>
-   <xacro:arg name="visual_params" default=""/>
+   <xacro:arg name="joint_limit_params" default="$(find cobot_demo)/config/joint_limits.yaml"/>
+   <xacro:arg name="kinematics_params" default="$(find cobot_demo)/config/default_kinematics.yaml"/>
+   <xacro:arg name="physical_params" default="$(find cobot_demo)/config/physical_parameters.yaml"/>
+   <xacro:arg name="visual_params" default="$(find cobot_demo)/config/visual_parameters.yaml"/>
 
-    <!-- Simulation parameters -->
+   <!-- Simulation parameters -->
    <xacro:arg name="use_fake_hardware" default="true" />
 
    <!-- Initial position for fake hardware -->
@@ -37,25 +37,31 @@
      <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
    </xacro:mycobot_320_robot>
 
-
+   
    <!-- Gripper -->
    <xacro:include filename="$(find cobot_demo)/urdf/gripper_macro.xacro"/>
    <xacro:gripper></xacro:gripper>
 
 
-   <xacro:include filename="$(find cobot_demo)/urdf/gripper.ros2_control.xacro"/>
+<!--    <xacro:include filename="$(find cobot_demo)/urdf/gripper.ros2_control.xacro"/>
    <xacro:gripper_ros2_control use_fake_hardware="$(arg use_fake_hardware)">
-   </xacro:gripper_ros2_control>
-
-
-
-    <!-- Gripper -->
-    <!-- <link name="gripper"/> -->
-    <joint name="link6-gripper" type="fixed">
-      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+   </xacro:gripper_ros2_control> -->
+    <joint name="link6-gripper-base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="link6"/>
       <child link="gripper_base"/>
     </joint>
+
+
+
+    <link name="gripper"/>
+    <joint name="link6-gripper-center" type="fixed">
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <parent link="link6"/>
+      <child link="gripper"/>
+    </joint>
+
+
 
     <!-- Camera frame -->
     <link name="camera"/>
@@ -73,14 +79,5 @@
       <parent link="base_link"/>
       <child link="target"/>
     </joint>
-
-    <!-- Include gripper -->
-    <xacro:include filename="$(find mycobot_320_description)/urdf/inc/mycobot_common.xacro" />
-
-
-
-
-
-
 
 </robot>
