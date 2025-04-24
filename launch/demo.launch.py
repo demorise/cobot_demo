@@ -308,11 +308,11 @@ def generate_launch_description():
     )
 
 
-    # gripper_controller_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["gripper_controller", "-c", "/controller_manager"],
-    # )
+    gripper_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["gripper_traj_controller", "-c", "/controller_manager"],
+    )
 
 
     # Start the actual move_group node/action server
@@ -350,7 +350,7 @@ def generate_launch_description():
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
         robot_traj_controller_spawner,
-        # gripper_controller_spawner,
+        gripper_controller_spawner,
         move_group_node,
         camera_node,
         aruco_node,

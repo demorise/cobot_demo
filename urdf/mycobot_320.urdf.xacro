@@ -42,10 +42,6 @@
    <xacro:include filename="$(find cobot_demo)/urdf/gripper_macro.xacro"/>
    <xacro:gripper></xacro:gripper>
 
-
-<!--    <xacro:include filename="$(find cobot_demo)/urdf/gripper.ros2_control.xacro"/>
-   <xacro:gripper_ros2_control use_fake_hardware="$(arg use_fake_hardware)">
-   </xacro:gripper_ros2_control> -->
     <joint name="link6-gripper-base" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="link6"/>
