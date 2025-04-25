@@ -36,6 +36,7 @@ protected Q_SLOTS:
   void moveToTarget(bool clicked);
   void moveToPlayPose(bool clicked);
   void openGripper(bool clicked);
+  void closeGripper(bool clicked);
   void gripObject(bool clicked);
   void releaseObject(bool clicked);
 

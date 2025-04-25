@@ -13,6 +13,9 @@ namespace cobot_demo
         connect(ui_form_->goToTargetPushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
         connect(ui_form_->goToPlayPosePushButton, SIGNAL(clicked(bool)), this, SLOT(moveToPlayPose(bool)));
 
+        connect(ui_form_->openGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(openGripper(bool)));
+        connect(ui_form_->closeGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(closeGripper(bool)));
+
         nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
     }
 
@@ -49,6 +52,22 @@ namespace cobot_demo
 
     void DemoPanel::openGripper(bool clicked)
     {
+        std::thread t = std::thread([this]()
+            {
+                rc_.setGripperPosition({0.0});
+            });
+
+        t.detach();
+    }
+
+    void DemoPanel::closeGripper(bool clicked)
+    {
+        std::thread t = std::thread([this]()
+            {
+                rc_.setGripperPosition({-63.0});
+            });
+
+        t.detach();
 
     }
 
