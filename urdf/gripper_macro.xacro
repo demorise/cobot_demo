@@ -5,16 +5,22 @@
 
 <xacro:property name="width" value=".2" />
 
+<material name="white">
+  <color rgba="1 1 1 1"/>
+</material>
+
+
   <link name="gripper_base">
     <visual>
       <geometry>
-       <mesh filename="package://cobot_demo/urdf/meshes/gripper_base.dae"/>
+       <mesh scale="0.001 0.001 0.001" filename="package://cobot_demo/urdf/meshes/collision/gripper_base.dae"/>
+       <material name="white"/>
       </geometry>
     <origin xyz = "-0.02 0.012 -0.018 " rpy = " 1.5708 0 1.5708"/>
     </visual>
     <collision>
       <geometry>
-       <mesh filename="package://cobot_demo/urdf/meshes/gripper_base.dae"/>
+       <mesh scale="0.001 0.001 0.001" filename="package://cobot_demo/urdf/meshes/collision/gripper_base.dae"/>
       </geometry>
     <origin xyz = "-0.02 0.012 -0.018 " rpy = " 1.5708 0 1.5708"/>
     </collision>

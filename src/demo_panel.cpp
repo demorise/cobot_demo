@@ -9,12 +9,25 @@ namespace cobot_demo
           rc_()
     {
         ui_form_->setupUi(this);
+        ui_form_->predefinedPoseComboBox->addItem("Seated Center (Monitor)");
+        ui_form_->predefinedPoseComboBox->addItem("Seated Left Limit");
+        ui_form_->predefinedPoseComboBox->addItem("Seated Target");
+        ui_form_->predefinedPoseComboBox->addItem("Seated Crusher");
+        ui_form_->predefinedPoseComboBox->addItem("Standing Target");
+        ui_form_->predefinedPoseComboBox->addItem("Standing Desk Overview");
+        ui_form_->predefinedPoseComboBox->addItem("Standing Crusher");
+        ui_form_->predefinedPoseComboBox->addItem("Leaned in Target");
+        ui_form_->predefinedPoseComboBox->addItem("Leaned in TV");
+        ui_form_->predefinedPoseComboBox->addItem("Leaned in Keyboard");
+        ui_form_->predefinedPoseComboBox->addItem("Leaned in ESC Key");
         
         connect(ui_form_->goToTargetPushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
         connect(ui_form_->goToPlayPosePushButton, SIGNAL(clicked(bool)), this, SLOT(moveToPlayPose(bool)));
 
         connect(ui_form_->openGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(openGripper(bool)));
         connect(ui_form_->closeGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(closeGripper(bool)));
+
+        connect(ui_form_->predefinedPosePushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
 
         nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
     }
@@ -68,8 +81,72 @@ namespace cobot_demo
             });
 
         t.detach();
-
     }
+
+    void DemoPanel::goToPredefinedPose(bool clicked)
+    {
+        std::vector<double> joints;
+        std::string predefinedPose = ui_form_->predefinedPoseComboBox->currentText().toStdString();
+        if (predefinedPose == "Seated Center (Monitor)")
+        {
+            joints = {0.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        }
+        else if (predefinedPose == "Seated Left Limit")
+        {
+            joints = {15.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        }
+        else if (predefinedPose == "Seated Target")
+        {
+            joints = {25.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        }
+        else if (predefinedPose == "Seated Crusher")
+        {
+            joints = {-30.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        }
+        else if (predefinedPose == "Standing Target")
+        {
+            joints = {25.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+        }
+        else if (predefinedPose == "Standing Desk Overview")
+        {
+            joints = {0.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+        }
+        else if (predefinedPose == "Standing Crusher")
+        {
+            joints = {-35.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+        }
+        else if (predefinedPose == "Leaned in Target")
+        {
+            joints = {30.0, 0.0, -90.0, 35.0, 90.0, 0.0};
+        }
+        else if (predefinedPose == "Leaned in TV")
+        {
+            joints = {0.0, 0.0, -90.0, 50.0, 90.0, 0.0};
+        }
+        else if (predefinedPose == "Leaned in Keyboard")
+        {
+            joints = {0.0, 0.0, -90.0, 0.0, 90.0, 0.0};
+        }
+        else if (predefinedPose == "Leaned in ESC Key")
+        {
+            joints = {25.0, 0.0, -135.0, 65.0, 90.0, 0.0};
+        }
+        else
+        {
+            joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+        }
+
+        std::thread t = std::thread([this, joints]()
+        {
+            rc_.planToJointPose(joints);
+            rclcpp::sleep_for(std::chrono::milliseconds(1500));
+            rc_.executeTrajectory();
+        });
+
+        t.detach();
+    }
+
+
 
 
     void DemoPanel::releaseObject(bool clicked)

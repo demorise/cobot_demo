@@ -39,6 +39,7 @@ protected Q_SLOTS:
   void closeGripper(bool clicked);
   void gripObject(bool clicked);
   void releaseObject(bool clicked);
+  void goToPredefinedPose(bool clicked);
 
 private:
   rclcpp::Node::SharedPtr nh_;

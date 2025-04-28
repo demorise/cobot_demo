@@ -64,11 +64,11 @@
     </joint>
 
     <!-- Target frame for simulation-->
-    <link name="target"/>
+<!--     <link name="target"/>
     <joint name="base-target" type="fixed">
       <origin xyz="-0.045 -0.214 0.353" rpy="${radians(-106.984)} ${radians(-23.960)} ${radians(-172.926)}"/>
       <parent link="base_link"/>
       <child link="target"/>
-    </joint>
+    </joint> -->
 
 </robot>
