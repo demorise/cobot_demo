@@ -29,6 +29,8 @@ namespace cobot_demo
 
         connect(ui_form_->predefinedPosePushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
 
+        connect(ui_form_->gripperSlider, SIGNAL(valueChanged(int)), this, SLOT(controlGripperJaws(int)));
+
         nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
     }
 
@@ -65,23 +67,24 @@ namespace cobot_demo
 
     void DemoPanel::openGripper(bool clicked)
     {
-        std::thread t = std::thread([this]()
-            {
-                rc_.setGripperPosition({0.0});
-            });
-
-        t.detach();
+        ui_form_->gripperSlider->setValue(100);
     }
 
     void DemoPanel::closeGripper(bool clicked)
     {
-        std::thread t = std::thread([this]()
+        ui_form_->gripperSlider->setValue(0);
+    }
+
+    void DemoPanel::controlGripperJaws(int i)
+    {
+        std::thread t = std::thread([this, i]()
             {
-                rc_.setGripperPosition({-63.0});
+                rc_.setGripperPosition({(i*0.63)-63.0});
             });
 
         t.detach();
     }
+
 
     void DemoPanel::goToPredefinedPose(bool clicked)
     {
