@@ -20,6 +20,12 @@ namespace cobot_demo
         ui_form_->predefinedPoseComboBox->addItem("Leaned in TV");
         ui_form_->predefinedPoseComboBox->addItem("Leaned in Keyboard");
         ui_form_->predefinedPoseComboBox->addItem("Leaned in ESC Key");
+
+        std::vector<double> joint_positions;
+        rc_.getManipulatorJointPositions(joint_positions);
+        ui_form_->headSlider->setValue(joint_positions[3]);
+        
+
         
         connect(ui_form_->goToTargetPushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
         connect(ui_form_->goToPlayPosePushButton, SIGNAL(clicked(bool)), this, SLOT(moveToPlayPose(bool)));
@@ -30,6 +36,11 @@ namespace cobot_demo
         connect(ui_form_->predefinedPosePushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
 
         connect(ui_form_->gripperSlider, SIGNAL(valueChanged(int)), this, SLOT(controlGripperJaws(int)));
+
+        connect(ui_form_->headSlider, SIGNAL(valueChanged(int)), this, SLOT(controlHead(int)));
+        connect(ui_form_->lowerHeadPushButton, SIGNAL(clicked(bool)), this, SLOT(lowerHead(bool)));
+        connect(ui_form_->raiseHeadPushButton, SIGNAL(clicked(bool)), this, SLOT(raiseHead(bool)));
+
 
         nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
     }
@@ -84,6 +95,35 @@ namespace cobot_demo
 
         t.detach();
     }
+
+
+    void DemoPanel::controlHead(int i)
+    {
+        std::vector<double> joints;
+        rc_.getManipulatorJointPositions(joints);
+        joints[3] = i*1.0;
+
+        std::thread t = std::thread([this, joints]()
+        {
+            rc_.planToJointPose(joints);
+            rclcpp::sleep_for(std::chrono::milliseconds(1500));
+            rc_.executeTrajectory();
+        });
+
+        t.detach();
+    }
+
+
+    void DemoPanel::lowerHead(bool clicked)
+    {
+        ui_form_->headSlider->setValue(-100);
+
+    }
+    void DemoPanel::raiseHead(bool clicked)
+    {
+        ui_form_->headSlider->setValue(100);
+    }
+
 
 
     void DemoPanel::goToPredefinedPose(bool clicked)

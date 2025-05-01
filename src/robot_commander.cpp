@@ -139,6 +139,7 @@ namespace robot_commander
       move_group_interface_.getCurrentState()->getJointModelGroup("arm_group");
     moveit::core::RobotStatePtr current_state = move_group_interface_.getCurrentState(10);
     current_state->copyJointGroupPositions(joint_model_group, joint_positions);
+    std::transform(joint_positions.begin(), joint_positions.end(), joint_positions.begin(), [](double d) -> double { return d * (180.0/M_PI); });
     return true;
   }
 
