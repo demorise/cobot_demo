@@ -133,6 +133,15 @@ namespace robot_commander
     return true;
   }
 
+  bool RobotCommander::getManipulatorJointPositions(std::vector<double>& joint_positions)
+  {
+    const moveit::core::JointModelGroup* joint_model_group = 
+      move_group_interface_.getCurrentState()->getJointModelGroup("arm_group");
+    moveit::core::RobotStatePtr current_state = move_group_interface_.getCurrentState(10);
+    current_state->copyJointGroupPositions(joint_model_group, joint_positions);
+    return true;
+  }
+
   geometry_msgs::msg::Pose RobotCommander::applyRotation(const geometry_msgs::msg::Pose& pose, double roll, double pitch, double yaw)
   {
     tf2::Quaternion q_orig, q_rot, q_new;

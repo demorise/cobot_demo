@@ -40,6 +40,8 @@ public:
 
   bool getTargetPose(geometry_msgs::msg::Pose& target_pose);
 
+  bool getManipulatorJointPositions(std::vector<double>& joint_positions);
+
 private:
   geometry_msgs::msg::Pose applyRotation(const geometry_msgs::msg::Pose& pose, double roll, double pitch, double yaw);
 
