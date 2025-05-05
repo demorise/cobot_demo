@@ -87,8 +87,11 @@ private:
         tf_broadcaster_->sendTransform(t_aruco);
 
         geometry_msgs::msg::TransformStamped t_target;//applyRotation(t,0, 0, -172.926);
+        t_target.transform.translation.x = -0.019;
+        t_target.transform.translation.y = 0.013;
+        t_target.transform.translation.z = -0.032;
         tf2::Quaternion q;
-        q.setRPY(180.0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
+        q.setRPY(170.743*(M_PI/180.0), 15.935*(M_PI/180.0), 98.021*(M_PI/180.0));
         q.normalize();
         geometry_msgs::msg::Quaternion msg_quat = tf2::toMsg(q);
         t_target.header.stamp = node_->get_clock()->now();

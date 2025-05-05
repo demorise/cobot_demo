@@ -66,9 +66,18 @@
     <!-- Target frame for simulation-->
 <!--     <link name="target"/>
     <joint name="base-target" type="fixed">
-      <origin xyz="-0.045 -0.214 0.353" rpy="${radians(-106.984)} ${radians(-23.960)} ${radians(-172.926)}"/>
+      <origin xyz="0.247 0.258 0.061" rpy="${radians(-178.566)} ${radians(-34.538)} ${radians(56.878)}"/>
       <parent link="base_link"/>
       <child link="target"/>
     </joint> -->
+
+    <!-- Aruco frame for simulation-->
+<!--     <link name="aruco"/>
+    <joint name="base-aruco" type="fixed">
+      <origin xyz="0.247 0.219 0.066" rpy="${radians(49.866)} ${radians(14.975)} ${radians(-32.234)}"/>
+      <parent link="base_link"/>
+      <child link="aruco"/>
+    </joint> -->
+
 
 </robot>
