@@ -9,39 +9,27 @@ namespace cobot_demo
           rc_()
     {
         ui_form_->setupUi(this);
-        ui_form_->predefinedPoseComboBox->addItem("Seated Center (Monitor)");
-        ui_form_->predefinedPoseComboBox->addItem("Seated Left Limit");
-        ui_form_->predefinedPoseComboBox->addItem("Seated Target");
-        ui_form_->predefinedPoseComboBox->addItem("Seated Crusher");
-        ui_form_->predefinedPoseComboBox->addItem("Standing Target");
-        ui_form_->predefinedPoseComboBox->addItem("Standing Desk Overview");
-        ui_form_->predefinedPoseComboBox->addItem("Standing Crusher");
-        ui_form_->predefinedPoseComboBox->addItem("Leaned in Target");
-        ui_form_->predefinedPoseComboBox->addItem("Leaned in TV");
-        ui_form_->predefinedPoseComboBox->addItem("Leaned in Keyboard");
-        ui_form_->predefinedPoseComboBox->addItem("Leaned in ESC Key");
 
-        std::vector<double> joint_positions;
-        rc_.getManipulatorJointPositions(joint_positions);
-        ui_form_->headSlider->setValue(joint_positions[3]);
+        // std::vector<double> joint_positions;
+        // rc_.getManipulatorJointPositions(joint_positions);
         
-
-        
-        connect(ui_form_->goToTargetPushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
-        connect(ui_form_->goToPlayPosePushButton, SIGNAL(clicked(bool)), this, SLOT(moveToPlayPose(bool)));
+        connect(ui_form_->largeDriveAutopushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
+        connect(ui_form_->smallDriveAutopushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
 
         connect(ui_form_->openGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(openGripper(bool)));
         connect(ui_form_->closeGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(closeGripper(bool)));
-
-        connect(ui_form_->predefinedPosePushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
-
         connect(ui_form_->gripperSlider, SIGNAL(valueChanged(int)), this, SLOT(controlGripperJaws(int)));
-
-        connect(ui_form_->headSlider, SIGNAL(valueChanged(int)), this, SLOT(controlHead(int)));
-        connect(ui_form_->lowerHeadPushButton, SIGNAL(clicked(bool)), this, SLOT(lowerHead(bool)));
-        connect(ui_form_->raiseHeadPushButton, SIGNAL(clicked(bool)), this, SLOT(raiseHead(bool)));
-
-
+        
+        connect(ui_form_->centerLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->centerSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->centerStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->leftLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->leftSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->leftStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->rightLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->rightStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        connect(ui_form_->righttSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+        
         nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
     }
 
@@ -64,17 +52,17 @@ namespace cobot_demo
         t.detach();
     }
 
-    void DemoPanel::moveToPlayPose(bool clicked)
-    {
-        std::thread t = std::thread([this]()
-            {
-                rc_.planToJointPose({62.0, 36.0, -43.0, 98.0, -91.0, -29.0});
-                rclcpp::sleep_for(std::chrono::milliseconds(1500));
-                rc_.executeTrajectory();
-            });
+    // void DemoPanel::moveToPlayPose(bool clicked)
+    // {
+    //     std::thread t = std::thread([this]()
+    //         {
+    //             rc_.planToJointPose({62.0, 36.0, -43.0, 98.0, -91.0, -29.0});
+    //             rclcpp::sleep_for(std::chrono::milliseconds(1500));
+    //             rc_.executeTrajectory();
+    //         });
 
-        t.detach();
-    }
+    //     t.detach();
+    // }
 
     void DemoPanel::openGripper(bool clicked)
     {
@@ -97,83 +85,71 @@ namespace cobot_demo
     }
 
 
-    void DemoPanel::controlHead(int i)
-    {
-        std::vector<double> joints;
-        rc_.getManipulatorJointPositions(joints);
-        joints[3] = i*1.0;
+    // void DemoPanel::controlHead(int i)
+    // {
+    //     std::vector<double> joints;
+    //     rc_.getManipulatorJointPositions(joints);
+    //     joints[3] = i*1.0;
 
-        std::thread t = std::thread([this, joints]()
-        {
-            rc_.planToJointPose(joints);
-            rclcpp::sleep_for(std::chrono::milliseconds(1500));
-            rc_.executeTrajectory();
-        });
+    //     std::thread t = std::thread([this, joints]()
+    //     {
+    //         rc_.planToJointPose(joints);
+    //         rclcpp::sleep_for(std::chrono::milliseconds(1500));
+    //         rc_.executeTrajectory();
+    //     });
 
-        t.detach();
-    }
-
-
-    void DemoPanel::lowerHead(bool clicked)
-    {
-        ui_form_->headSlider->setValue(-100);
-
-    }
-    void DemoPanel::raiseHead(bool clicked)
-    {
-        ui_form_->headSlider->setValue(100);
-    }
-
+    //     t.detach();
+    // }
 
 
     void DemoPanel::goToPredefinedPose(bool clicked)
     {
         std::vector<double> joints;
-        std::string predefinedPose = ui_form_->predefinedPoseComboBox->currentText().toStdString();
-        if (predefinedPose == "Seated Center (Monitor)")
+
+        if (qobject_cast<QPushButton*>(sender()) == ui_form_->centerSeatedPushButton)//("Seated Center (Monitor)")
         {
             joints = {0.0, 110.0, -110.0, -35.0, 95.0, 0.0};
         }
-        else if (predefinedPose == "Seated Left Limit")
+        else if (qobject_cast<QPushButton*>(sender()) == ui_form_->leftSeatedPushButton)//("Seated Left Limit")
         {
             joints = {15.0, 110.0, -110.0, -35.0, 95.0, 0.0};
         }
-        else if (predefinedPose == "Seated Target")
-        {
-            joints = {25.0, 110.0, -110.0, -35.0, 95.0, 0.0};
-        }
-        else if (predefinedPose == "Seated Crusher")
-        {
-            joints = {-30.0, 110.0, -110.0, -35.0, 95.0, 0.0};
-        }
-        else if (predefinedPose == "Standing Target")
-        {
-            joints = {25.0, 0.0, 0.0, -55.0, 90.0, 0.0};
-        }
-        else if (predefinedPose == "Standing Desk Overview")
-        {
-            joints = {0.0, 0.0, 0.0, -55.0, 90.0, 0.0};
-        }
-        else if (predefinedPose == "Standing Crusher")
-        {
-            joints = {-35.0, 0.0, 0.0, -55.0, 90.0, 0.0};
-        }
-        else if (predefinedPose == "Leaned in Target")
-        {
-            joints = {30.0, 0.0, -90.0, 35.0, 90.0, 0.0};
-        }
-        else if (predefinedPose == "Leaned in TV")
-        {
-            joints = {0.0, 0.0, -90.0, 50.0, 90.0, 0.0};
-        }
-        else if (predefinedPose == "Leaned in Keyboard")
-        {
-            joints = {0.0, 0.0, -90.0, 0.0, 90.0, 0.0};
-        }
-        else if (predefinedPose == "Leaned in ESC Key")
-        {
-            joints = {25.0, 0.0, -135.0, 65.0, 90.0, 0.0};
-        }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Seated Target")
+        // {
+        //     joints = {25.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Seated Crusher")
+        // {
+        //     joints = {-30.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Target")
+        // {
+        //     joints = {25.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Desk Overview")
+        // {
+        //     joints = {0.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Crusher")
+        // {
+        //     joints = {-35.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in Target")
+        // {
+        //     joints = {30.0, 0.0, -90.0, 35.0, 90.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in TV")
+        // {
+        //     joints = {0.0, 0.0, -90.0, 50.0, 90.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in Keyboard")
+        // {
+        //     joints = {0.0, 0.0, -90.0, 0.0, 90.0, 0.0};
+        // }
+        // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in ESC Key")
+        // {
+        //     joints = {25.0, 0.0, -135.0, 65.0, 90.0, 0.0};
+        // }
         else
         {
             joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};

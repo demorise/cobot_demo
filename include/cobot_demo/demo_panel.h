@@ -34,13 +34,9 @@ protected Q_SLOTS:
   void pick(bool clicked);
   void resetScene(bool clicked);
   void moveToTarget(bool clicked);
-  void moveToPlayPose(bool clicked);
   void openGripper(bool clicked);
   void closeGripper(bool clicked);
   void controlGripperJaws(int i);
-  void controlHead(int i);
-  void lowerHead(bool clicked);
-  void raiseHead(bool clicked);
   void gripObject(bool clicked);
   void releaseObject(bool clicked);
   void goToPredefinedPose(bool clicked);
