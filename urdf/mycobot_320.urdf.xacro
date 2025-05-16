@@ -37,7 +37,6 @@
      <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
    </xacro:mycobot_320_robot>
 
-   
    <!-- Gripper -->
    <xacro:include filename="$(find cobot_demo)/urdf/gripper_macro.xacro"/>
    <xacro:gripper></xacro:gripper>
@@ -63,21 +62,47 @@
       <child link="camera"/>
     </joint>
 
-    <!-- Target frame for simulation-->
-<!--     <link name="target"/>
-    <joint name="base-target" type="fixed">
-      <origin xyz="0.247 0.258 0.061" rpy="${radians(-178.566)} ${radians(-34.538)} ${radians(56.878)}"/>
-      <parent link="base_link"/>
-      <child link="target"/>
-    </joint> -->
-
     <!-- Aruco frame for simulation-->
-<!--     <link name="aruco"/>
+    <link name="aruco"/>
     <joint name="base-aruco" type="fixed">
-      <origin xyz="0.247 0.219 0.066" rpy="${radians(49.866)} ${radians(14.975)} ${radians(-32.234)}"/>
+      <origin xyz="0.247 0.219 0.066" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
       <parent link="base_link"/>
       <child link="aruco"/>
-    </joint> -->
+    </joint>
 
+    <!-- Target frame for simulation-->
+    <link name="target"/>
+    <joint name="aruco-target" type="fixed">
+      <origin xyz="0.0 0.0 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
+      <parent link="aruco"/>
+      <child link="target"/>
+    </joint>
+
+    <!-- HDD caddy for simulation-->
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+
+    <link name="hdd_caddy">
+      <visual>
+        <geometry>
+         <mesh filename="package://cobot_demo/urdf/meshes/hdd_caddy.dae"/>
+         <material name="black"/>
+        </geometry>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh filename="package://cobot_demo/urdf/meshes/hdd_caddy.dae"/>
+        </geometry>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      </collision>
+    </link>
+
+    <joint name="aruco-hdd_caddy" type="fixed">
+      <origin xyz="0 0 0" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+      <parent link="aruco"/>
+      <child link="hdd_caddy"/>
+    </joint>
 
 </robot>
