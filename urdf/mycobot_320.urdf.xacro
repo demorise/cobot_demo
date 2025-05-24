@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="mycobot_320">
+
+   <!-- Robot name parameter -->
+   <xacro:arg name="name" default="mycobot_320"/>
+
+   <!-- Import main macro -->
+   <xacro:include filename="$(find mycobot_320_description)/urdf/mycobot_320_macro.xacro"/>
+
+   <!-- Parameters -->
+   <xacro:arg name="prefix" default="" />
+   <xacro:arg name="joint_limit_params" default="$(find cobot_demo)/config/joint_limits.yaml"/>
+   <xacro:arg name="kinematics_params" default="$(find cobot_demo)/config/default_kinematics.yaml"/>
+   <xacro:arg name="physical_params" default="$(find cobot_demo)/config/physical_parameters.yaml"/>
+   <xacro:arg name="visual_params" default="$(find cobot_demo)/config/visual_parameters.yaml"/>
+
+   <!-- Simulation parameters -->
+   <xacro:arg name="use_fake_hardware" default="true" />
+
+   <!-- Initial position for fake hardware -->
+   <xacro:arg name="initial_positions_file" default="$(find mycobot_320_description)/config/initial_positions.yaml"/>
+
+   <!-- Create link fixed to the "world" -->
+   <link name="world" />
+
+   <!-- Arm -->
+   <xacro:mycobot_320_robot
+     name="$(arg name)"
+     prefix="$(arg prefix)"
+     parent="world"
+     joint_limits_parameters_file="$(arg joint_limit_params)"
+     kinematics_parameters_file="$(arg kinematics_params)"
+     physical_parameters_file="$(arg physical_params)"
+     visual_parameters_file="$(arg visual_params)"
+     initial_positions_file="$(arg initial_positions_file)"
+     use_fake_hardware="$(arg use_fake_hardware)">
+     <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
+   </xacro:mycobot_320_robot>
+
+   <!-- Gripper -->
+   <xacro:include filename="$(find cobot_demo)/urdf/gripper_macro.xacro"/>
+   <xacro:gripper></xacro:gripper>
+
+    <joint name="link6-gripper-base" type="fixed">
+      <origin xyz="0 -0.01 0.06" rpy="1.5708 0 0"/>
+      <parent link="link6"/>
+      <child link="gripper_base"/>
+    </joint>
+
+    <link name="gripper"/>
+    <joint name="link6-gripper-center" type="fixed">
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <parent link="link6"/>
+      <child link="gripper"/>
+    </joint>
+
+    <!-- Camera frame -->
+    <link name="camera"/>
+    <joint name="link6-camera" type="fixed">
+      <origin xyz="0.0762 0 0" rpy="0 0 0"/>
+      <parent link="link6"/>
+      <child link="camera"/>
+    </joint>
+
+    <!-- Aruco frame for simulation-->
+    <link name="aruco"/>
+    <joint name="base-aruco" type="fixed">
+      <origin xyz="0.247 0.219 0.066" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+      <parent link="base_link"/>
+      <child link="aruco"/>
+    </joint>
+
+    <!-- Target frame for simulation-->
+    <link name="target"/>
+    <joint name="aruco-target" type="fixed">
+      <origin xyz="0.0 0.0 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
+      <parent link="aruco"/>
+      <child link="target"/>
+    </joint>
+
+    <!-- HDD caddy for simulation-->
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+
+    <link name="hdd_caddy">
+      <visual>
+        <geometry>
+         <mesh filename="package://cobot_demo/urdf/meshes/hdd_caddy.dae"/>
+         <material name="black"/>
+        </geometry>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh filename="package://cobot_demo/urdf/meshes/hdd_caddy.dae"/>
+        </geometry>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      </collision>
+    </link>
+
+    <joint name="aruco-hdd_caddy" type="fixed">
+      <origin xyz="0 0 0" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+      <parent link="aruco"/>
+      <child link="hdd_caddy"/>
+    </joint>
+
+</robot>

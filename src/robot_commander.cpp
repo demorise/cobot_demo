@@ -7,7 +7,8 @@ namespace robot_commander
   RobotCommander::RobotCommander()
     :node_(std::make_shared<rclcpp::Node>("robot_commander", 
            rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true))),
-     move_group_interface_(node_, "arm_group")
+     move_group_interface_(node_, "arm_group"),
+     move_group_interface_gripper_(node_, "gripper_group")
   {
     executor_ = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
     thread_ = std::make_unique<std::thread>([&]() 
@@ -20,7 +21,6 @@ namespace robot_commander
     tf_buffer_ = std::make_unique<tf2_ros::Buffer>(node_->get_clock());
     
     tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
-
   }
 
   RobotCommander::~RobotCommander()
@@ -58,8 +58,6 @@ namespace robot_commander
       RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
       return false;
     }
-
-    return true;
   }
 
   bool RobotCommander::planToCartesianPose(geometry_msgs::msg::Pose target_pose)
@@ -94,6 +92,37 @@ namespace robot_commander
     return true;
   }
 
+  bool RobotCommander::setGripperPosition(const std::vector<double>& joint_positions)
+  {
+    //TO DO : Assert vector size is 1
+    std::vector<double> joint_positions_radians;
+    for (double jt : joint_positions)
+      joint_positions_radians.push_back(jt*(M_PI/180.0));
+
+    bool within_bounds = move_group_interface_gripper_.setJointValueTarget(joint_positions_radians);
+    if (!within_bounds)
+    {
+      RCLCPP_ERROR(node_->get_logger(), "Target joint configuration for gripper outside of limits");
+      return false;
+    }
+
+    move_group_interface_gripper_.setMaxVelocityScalingFactor(0.05);
+    move_group_interface_gripper_.setMaxAccelerationScalingFactor(0.05);
+    moveit::planning_interface::MoveGroupInterface::Plan plan;
+    bool success = (move_group_interface_gripper_.plan(plan) == moveit::core::MoveItErrorCode::SUCCESS);
+
+    if (success)
+    {
+      move_group_interface_.execute(plan);
+      return true;
+    }
+    else
+    {
+      RCLCPP_ERROR(node_->get_logger(), "Planning failed for gripper!");
+      return false;
+    }
+  }
+
   bool RobotCommander::getTargetPose(geometry_msgs::msg::Pose& target_pose)
   {
     geometry_msgs::msg::Pose pose;
@@ -101,6 +130,16 @@ namespace robot_commander
     geometry_msgs::msg::TransformStamped t;
     getTransform("base_link", "target", t);
     target_pose = applyTransform(pose, t);
+    return true;
+  }
+
+  bool RobotCommander::getManipulatorJointPositions(std::vector<double>& joint_positions)
+  {
+    const moveit::core::JointModelGroup* joint_model_group = 
+      move_group_interface_.getCurrentState()->getJointModelGroup("arm_group");
+    moveit::core::RobotStatePtr current_state = move_group_interface_.getCurrentState(10);
+    current_state->copyJointGroupPositions(joint_model_group, joint_positions);
+    std::transform(joint_positions.begin(), joint_positions.end(), joint_positions.begin(), [](double d) -> double { return d * (180.0/M_PI); });
     return true;
   }
 

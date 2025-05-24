@@ -34,10 +34,13 @@ protected Q_SLOTS:
   void pick(bool clicked);
   void resetScene(bool clicked);
   void moveToTarget(bool clicked);
-  void moveToPlayPose(bool clicked);
   void openGripper(bool clicked);
+  void closeGripper(bool clicked);
+  void controlGripperJaws(int i);
   void gripObject(bool clicked);
   void releaseObject(bool clicked);
+  void goToPredefinedPose(bool clicked);
+  void jointSliderCallback(int i);
 
 private:
   rclcpp::Node::SharedPtr nh_;

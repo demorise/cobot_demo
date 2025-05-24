@@ -140,7 +140,7 @@ def generate_launch_description():
             'xacro',
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", description_file]
+                [FindPackageShare("cobot_demo"), "urdf", description_file]
             ),
             " ",
             "joint_limit_params:=",
@@ -178,7 +178,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", moveit_config_file]
+                [FindPackageShare("cobot_demo"), "urdf", moveit_config_file]
             ),
             " ",
             "name:=",
@@ -307,6 +307,14 @@ def generate_launch_description():
         arguments=[robot_controller, "-c", "/controller_manager"],
     )
 
+
+    gripper_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["gripper_traj_controller", "-c", "/controller_manager"],
+    )
+
+
     # Start the actual move_group node/action server
 
     move_group_node = Node(
@@ -342,6 +350,7 @@ def generate_launch_description():
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
         robot_traj_controller_spawner,
+        gripper_controller_spawner,
         move_group_node,
         camera_node,
         aruco_node,

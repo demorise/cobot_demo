@@ -36,7 +36,11 @@ public:
 
   bool executeTrajectory();
 
+  bool setGripperPosition(const std::vector<double>& joint_positions);
+
   bool getTargetPose(geometry_msgs::msg::Pose& target_pose);
+
+  bool getManipulatorJointPositions(std::vector<double>& joint_positions);
 
 private:
   geometry_msgs::msg::Pose applyRotation(const geometry_msgs::msg::Pose& pose, double roll, double pitch, double yaw);
@@ -55,6 +59,8 @@ private:
   rclcpp::Node::SharedPtr node_;
 
   moveit::planning_interface::MoveGroupInterface move_group_interface_;
+
+  moveit::planning_interface::MoveGroupInterface move_group_interface_gripper_;
 
   moveit::planning_interface::MoveGroupInterface::Plan motion_plan_;
 

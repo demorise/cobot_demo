@@ -3,90 +3,233 @@
 
 namespace cobot_demo
 {
-    DemoPanel::DemoPanel(QWidget * parent) 
-        : rviz_common::Panel(parent), 
-          ui_form_(new Ui::Form()),
-          rc_()
+DemoPanel::DemoPanel(QWidget * parent) 
+    : rviz_common::Panel(parent), 
+      ui_form_(new Ui::Form()),
+      rc_()
+{
+    ui_form_->setupUi(this);
+
+    // Ensure joint slider positions match robot's current joint values
+    std::vector<double> joint_positions;
+    rc_.getManipulatorJointPositions(joint_positions);
+    ui_form_->joint1Slider->setValue(joint_positions[0]);
+    ui_form_->joint2Slider->setValue(joint_positions[1]);
+    ui_form_->joint3Slider->setValue(joint_positions[2]);
+    ui_form_->joint4Slider->setValue(joint_positions[3]);
+    ui_form_->joint5Slider->setValue(joint_positions[4]);
+    ui_form_->joint6Slider->setValue(joint_positions[5]);
+
+    // 
+    connect(ui_form_->largeDriveAutopushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
+    connect(ui_form_->smallDriveAutopushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
+
+    // Gripper
+    connect(ui_form_->openGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(openGripper(bool)));
+    connect(ui_form_->closeGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(closeGripper(bool)));
+    connect(ui_form_->gripperSlider, SIGNAL(valueChanged(int)), this, SLOT(controlGripperJaws(int)));
+    
+    // Predefined robot poses
+    connect(ui_form_->centerLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->centerSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->centerStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->leftLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->leftSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->leftStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->rightLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->rightStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->righttSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+
+    // Joint sliders
+    connect(ui_form_->joint1Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+    connect(ui_form_->joint2Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+    connect(ui_form_->joint3Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+    connect(ui_form_->joint4Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+    connect(ui_form_->joint5Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+    connect(ui_form_->joint6Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+
+    nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
+}
+
+DemoPanel::~DemoPanel()
+{
+
+}
+
+void DemoPanel::moveToTarget(bool clicked)
+{
+    std::thread t = std::thread([this](){
+        geometry_msgs::msg::Pose target_pose;
+        rc_.getTargetPose(target_pose);
+        rc_.planToCartesianPose(target_pose);
+        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        rc_.executeTrajectory();
+    });
+
+    t.detach();
+}
+
+void DemoPanel::openGripper(bool clicked)
+{
+    ui_form_->gripperSlider->setValue(100);
+}
+
+void DemoPanel::closeGripper(bool clicked)
+{
+    ui_form_->gripperSlider->setValue(0);
+}
+
+void DemoPanel::controlGripperJaws(int i)
+{
+    std::thread t = std::thread([this, i]()
+        {
+            rc_.setGripperPosition({(i*0.63)-63.0});
+        });
+
+    t.detach();
+}
+
+void DemoPanel::jointSliderCallback(int i)
+{
+    int joint_idx;
+    if (qobject_cast<QSlider*>(sender()) == ui_form_->joint1Slider)
     {
-        ui_form_->setupUi(this);
-        
-        connect(ui_form_->goToTargetPushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
-        connect(ui_form_->goToPlayPosePushButton, SIGNAL(clicked(bool)), this, SLOT(moveToPlayPose(bool)));
-
-        nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
+        joint_idx = 0;
     }
-
-    DemoPanel::~DemoPanel()
+    else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint2Slider)
     {
-
+        joint_idx = 1;
     }
-
-    void DemoPanel::moveToTarget(bool clicked)
+    else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint3Slider)
     {
-        std::thread t = std::thread([this]()
-            {
-                geometry_msgs::msg::Pose target_pose;
-                rc_.getTargetPose(target_pose);
-                rc_.planToCartesianPose(target_pose);
-                rclcpp::sleep_for(std::chrono::milliseconds(1500));
-                rc_.executeTrajectory();
-            });
-
-        t.detach();
+        joint_idx = 2;
     }
-
-    void DemoPanel::moveToPlayPose(bool clicked)
+    else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint4Slider)
     {
-        std::thread t = std::thread([this]()
-            {
-                rc_.planToJointPose({30.0, 30.0, 30.0, 30.0, 30.0, 0.0});
-                rclcpp::sleep_for(std::chrono::milliseconds(1500));
-                rc_.executeTrajectory();
-            });
-
-        t.detach();
+        joint_idx = 3;
     }
-
-    void DemoPanel::openGripper(bool clicked)
+    else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint5Slider)
     {
-
+        joint_idx = 4;
     }
-
-
-    void DemoPanel::releaseObject(bool clicked)
+    else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint6Slider)
     {
-
+        joint_idx = 5;
     }
+    std::vector<double> joints;
+    rc_.getManipulatorJointPositions(joints);
+    joints[joint_idx] = i*1.0;
 
-    void DemoPanel::gripObject(bool clicked)
+    std::thread t = std::thread([this, joints]()
     {
+        rc_.planToJointPose(joints);
+        rclcpp::sleep_for(std::chrono::milliseconds(100));
+        rc_.executeTrajectory();
+    });
 
-    }
+    t.detach();
+}
 
-    void DemoPanel::resetScene(bool clicked)
-    {   
+void DemoPanel::goToPredefinedPose(bool clicked)
+{
+    std::vector<double> joints;
 
-    }
-
-    void DemoPanel::pick(bool clicked)
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->centerSeatedPushButton)//("Seated Center (Monitor)")
     {
- 
+        joints = {0.0, 110.0, -110.0, -35.0, 95.0, 0.0};
     }
-
-    void DemoPanel::save(rviz_common::Config config) const
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->leftSeatedPushButton)//("Seated Left Limit")
     {
-        Panel::save(config);
+        joints = {15.0, 110.0, -110.0, -35.0, 95.0, 0.0};
     }
-
-    void DemoPanel::load(const rviz_common::Config &conf)
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Seated Target")
+    // {
+    //     joints = {25.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Seated Crusher")
+    // {
+    //     joints = {-30.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Target")
+    // {
+    //     joints = {25.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Desk Overview")
+    // {
+    //     joints = {0.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Crusher")
+    // {
+    //     joints = {-35.0, 0.0, 0.0, -55.0, 90.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in Target")
+    // {
+    //     joints = {30.0, 0.0, -90.0, 35.0, 90.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in TV")
+    // {
+    //     joints = {0.0, 0.0, -90.0, 50.0, 90.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in Keyboard")
+    // {
+    //     joints = {0.0, 0.0, -90.0, 0.0, 90.0, 0.0};
+    // }
+    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in ESC Key")
+    // {
+    //     joints = {25.0, 0.0, -135.0, 65.0, 90.0, 0.0};
+    // }
+    else
     {
-        Panel::load(conf);
+        joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
     }
 
-    void DemoPanel::onInitialize()
+    std::thread t = std::thread([this, joints]()
     {
+        rc_.planToJointPose(joints);
+        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        rc_.executeTrajectory();
+    });
 
-    }
+    t.detach();
+}
+
+
+
+
+void DemoPanel::releaseObject(bool clicked)
+{
+
+}
+
+void DemoPanel::gripObject(bool clicked)
+{
+
+}
+
+void DemoPanel::resetScene(bool clicked)
+{   
+
+}
+
+void DemoPanel::pick(bool clicked)
+{
+
+}
+
+void DemoPanel::save(rviz_common::Config config) const
+{
+    Panel::save(config);
+}
+
+void DemoPanel::load(const rviz_common::Config &conf)
+{
+    Panel::load(conf);
+}
+
+void DemoPanel::onInitialize()
+{
+
+}
 }
 
 #include <pluginlib/class_list_macros.hpp>
