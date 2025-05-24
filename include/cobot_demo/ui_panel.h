@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'formiYowCg.ui'
+** Form generated from reading UI file 'formSXhiKT.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef FORMIYOWCG_H
-#define FORMIYOWCG_H
+#ifndef FORMSXHIKT_H
+#define FORMSXHIKT_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -807,6 +807,8 @@ public:
         sizePolicy11.setVerticalStretch(0);
         sizePolicy11.setHeightForWidth(joint2Slider->sizePolicy().hasHeightForWidth());
         joint2Slider->setSizePolicy(sizePolicy11);
+        joint2Slider->setMinimum(-133);
+        joint2Slider->setMaximum(133);
         joint2Slider->setTracking(false);
         joint2Slider->setOrientation(Qt::Horizontal);
 
@@ -834,6 +836,8 @@ public:
         joint4Slider->setObjectName(QString::fromUtf8("joint4Slider"));
         sizePolicy11.setHeightForWidth(joint4Slider->sizePolicy().hasHeightForWidth());
         joint4Slider->setSizePolicy(sizePolicy11);
+        joint4Slider->setMinimum(-146);
+        joint4Slider->setMaximum(146);
         joint4Slider->setTracking(false);
         joint4Slider->setOrientation(Qt::Horizontal);
 
@@ -858,6 +862,8 @@ public:
         joint3Slider->setObjectName(QString::fromUtf8("joint3Slider"));
         sizePolicy11.setHeightForWidth(joint3Slider->sizePolicy().hasHeightForWidth());
         joint3Slider->setSizePolicy(sizePolicy11);
+        joint3Slider->setMinimum(-143);
+        joint3Slider->setMaximum(143);
         joint3Slider->setTracking(false);
         joint3Slider->setOrientation(Qt::Horizontal);
 
@@ -876,6 +882,8 @@ public:
         sizePolicy11.setHeightForWidth(joint1Slider->sizePolicy().hasHeightForWidth());
         joint1Slider->setSizePolicy(sizePolicy11);
         joint1Slider->setMinimumSize(QSize(50, 0));
+        joint1Slider->setMinimum(-165);
+        joint1Slider->setMaximum(165);
         joint1Slider->setTracking(false);
         joint1Slider->setOrientation(Qt::Horizontal);
 
@@ -952,6 +960,8 @@ public:
         joint5Slider->setObjectName(QString::fromUtf8("joint5Slider"));
         sizePolicy11.setHeightForWidth(joint5Slider->sizePolicy().hasHeightForWidth());
         joint5Slider->setSizePolicy(sizePolicy11);
+        joint5Slider->setMinimum(-166);
+        joint5Slider->setMaximum(166);
         joint5Slider->setTracking(false);
         joint5Slider->setOrientation(Qt::Horizontal);
 
@@ -961,6 +971,8 @@ public:
         joint6Slider->setObjectName(QString::fromUtf8("joint6Slider"));
         sizePolicy11.setHeightForWidth(joint6Slider->sizePolicy().hasHeightForWidth());
         joint6Slider->setSizePolicy(sizePolicy11);
+        joint6Slider->setMinimum(-178);
+        joint6Slider->setMaximum(178);
         joint6Slider->setTracking(false);
         joint6Slider->setOrientation(Qt::Horizontal);
 
@@ -1120,4 +1132,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // FORMIYOWCG_H
+#endif // FORMSXHIKT_H

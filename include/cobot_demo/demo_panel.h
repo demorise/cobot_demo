@@ -40,6 +40,7 @@ protected Q_SLOTS:
   void gripObject(bool clicked);
   void releaseObject(bool clicked);
   void goToPredefinedPose(bool clicked);
+  void jointSliderCallback(int i);
 
 private:
   rclcpp::Node::SharedPtr nh_;

@@ -1120,6 +1120,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimum">
+         <number>-133</number>
+        </property>
+        <property name="maximum">
+         <number>133</number>
+        </property>
         <property name="tracking">
          <bool>false</bool>
         </property>
@@ -1167,6 +1173,12 @@
           <horstretch>1</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimum">
+         <number>-146</number>
+        </property>
+        <property name="maximum">
+         <number>146</number>
         </property>
         <property name="tracking">
          <bool>false</bool>
@@ -1216,6 +1228,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimum">
+         <number>-143</number>
+        </property>
+        <property name="maximum">
+         <number>143</number>
+        </property>
         <property name="tracking">
          <bool>false</bool>
         </property>
@@ -1256,6 +1274,12 @@
           <width>50</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="minimum">
+         <number>-165</number>
+        </property>
+        <property name="maximum">
+         <number>165</number>
         </property>
         <property name="tracking">
          <bool>false</bool>
@@ -1414,6 +1438,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimum">
+         <number>-166</number>
+        </property>
+        <property name="maximum">
+         <number>166</number>
+        </property>
         <property name="tracking">
          <bool>false</bool>
         </property>
@@ -1429,6 +1459,12 @@
           <horstretch>1</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimum">
+         <number>-178</number>
+        </property>
+        <property name="maximum">
+         <number>178</number>
         </property>
         <property name="tracking">
          <bool>false</bool>
