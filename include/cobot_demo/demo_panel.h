@@ -7,6 +7,7 @@
 #endif
 
 #include <rviz_common/panel.hpp>
+#include <rviz_common/display_context.hpp>
 #include <cobot_demo/ui_panel.h>
 #include <cmath>
 #include <cobot_demo/robot_commander.h>
@@ -24,7 +25,7 @@ class DemoPanel : public rviz_common::Panel
 public:
   DemoPanel(QWidget* parent = 0);
   ~DemoPanel();
-  void onInitialize() override;
+  // void onInitialize() override;
   void save(rviz_common::Config config) const override;
   void load(const rviz_common::Config &conf) override;
 
@@ -43,9 +44,12 @@ protected Q_SLOTS:
   void jointSliderCallback(int i);
 
 private:
+  void onInitialize() override;
   rclcpp::Node::SharedPtr nh_;
   robot_commander::RobotCommander rc_;
+  rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_;
 
+void jointStateCallback(const sensor_msgs::msg::JointState & msg) const;
 
 protected:
   Ui::Form* ui_form_;
