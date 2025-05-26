@@ -64,6 +64,11 @@ void DemoPanel::onInitialize()
   joint_state_sub_ = nh_->create_subscription<sensor_msgs::msg::JointState>(
       "joint_states", 10, std::bind(&DemoPanel::jointStateCallback, this, std::placeholders::_1));
 
+    tf_buffer_ =
+      std::make_unique<tf2_ros::Buffer>(nh_->get_clock());
+    tf_listener_ =
+      std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+
 }
 
 
@@ -99,8 +104,30 @@ void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg) con
         if(msg.name[i]=="joint6")
             ui_form_->joint6Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
     }
-}
 
+    geometry_msgs::msg::TransformStamped t;
+    try {
+        // Gripper pose
+        t = tf_buffer_->lookupTransform("base_link", "gripper", tf2::TimePointZero);
+        ui_form_->xPoseLabel->setText(QString::number(t.transform.translation.x*1000.0, 'f', 1));
+        ui_form_->yPoseLabel->setText(QString::number(t.transform.translation.y*1000.0, 'f', 1));
+        ui_form_->zPoseLabel->setText(QString::number(t.transform.translation.z*1000.0, 'f', 1));
+        tf2::Quaternion q(t.transform.rotation.x, t.transform.rotation.y, t.transform.rotation.z, t.transform.rotation.w);
+        tf2::Matrix3x3 m(q);
+        double roll, pitch, yaw;
+        m.getRPY(roll, pitch, yaw);
+        ui_form_->rollPoseLabel->setText(QString::number(roll*(180.0/M_PI), 'f', 1));
+        ui_form_->pitchPoseLabel->setText(QString::number(pitch*(180.0/M_PI), 'f', 1));
+        ui_form_->yawPoseLabel->setText(QString::number(yaw*(180.0/M_PI), 'f', 1));
+
+        // Gripper width
+        t = tf_buffer_->lookupTransform("gripper", "gripper_right1", tf2::TimePointZero);
+        ui_form_->gripperWidthLabel->setText(QString::number(t.transform.translation.x*1000.0, 'f', 1));
+    } catch (const tf2::TransformException & ex) {
+        RCLCPP_INFO(nh_->get_logger(), "Could not transform %s to %s: %s", "base_link", "gripper", ex.what());
+        return;
+    }
+}
 
 
 void DemoPanel::moveToTarget(bool clicked)

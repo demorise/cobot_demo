@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'formXXUORB.ui'
+** Form generated from reading UI file 'formybcbOO.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef FORMXXUORB_H
-#define FORMXXUORB_H
+#ifndef FORMYBCBOO_H
+#define FORMYBCBOO_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -449,16 +449,19 @@ public:
         gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
         xPoseLabel = new QLabel(widget_4);
         xPoseLabel->setObjectName(QString::fromUtf8("xPoseLabel"));
+        xPoseLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(xPoseLabel, 1, 1, 1, 1);
 
         zPoseLabel = new QLabel(widget_4);
         zPoseLabel->setObjectName(QString::fromUtf8("zPoseLabel"));
+        zPoseLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(zPoseLabel, 3, 1, 1, 1);
 
         rollPoseLabel = new QLabel(widget_4);
         rollPoseLabel->setObjectName(QString::fromUtf8("rollPoseLabel"));
+        rollPoseLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(rollPoseLabel, 4, 1, 1, 1);
 
@@ -469,6 +472,7 @@ public:
 
         pitchPoseLabel = new QLabel(widget_4);
         pitchPoseLabel->setObjectName(QString::fromUtf8("pitchPoseLabel"));
+        pitchPoseLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(pitchPoseLabel, 5, 1, 1, 1);
 
@@ -494,6 +498,7 @@ public:
 
         yawPoseLabel = new QLabel(widget_4);
         yawPoseLabel->setObjectName(QString::fromUtf8("yawPoseLabel"));
+        yawPoseLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(yawPoseLabel, 6, 1, 1, 1);
 
@@ -504,6 +509,7 @@ public:
 
         yPoseLabel = new QLabel(widget_4);
         yPoseLabel->setObjectName(QString::fromUtf8("yPoseLabel"));
+        yPoseLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(yPoseLabel, 2, 1, 1, 1);
 
@@ -514,6 +520,7 @@ public:
 
         gripperWidthLabel = new QLabel(widget_4);
         gripperWidthLabel->setObjectName(QString::fromUtf8("gripperWidthLabel"));
+        gripperWidthLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(gripperWidthLabel, 0, 1, 1, 1);
 
@@ -558,6 +565,7 @@ public:
 
         joint1Label = new QLabel(widget_7);
         joint1Label->setObjectName(QString::fromUtf8("joint1Label"));
+        joint1Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(joint1Label, 1, 1, 1, 1);
 
@@ -568,6 +576,7 @@ public:
 
         gripperAngleLabel = new QLabel(widget_7);
         gripperAngleLabel->setObjectName(QString::fromUtf8("gripperAngleLabel"));
+        gripperAngleLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(gripperAngleLabel, 0, 1, 1, 1);
 
@@ -593,26 +602,31 @@ public:
 
         joint2Label = new QLabel(widget_7);
         joint2Label->setObjectName(QString::fromUtf8("joint2Label"));
+        joint2Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(joint2Label, 2, 1, 1, 1);
 
         joint3Label = new QLabel(widget_7);
         joint3Label->setObjectName(QString::fromUtf8("joint3Label"));
+        joint3Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(joint3Label, 3, 1, 1, 1);
 
         joint4Label = new QLabel(widget_7);
         joint4Label->setObjectName(QString::fromUtf8("joint4Label"));
+        joint4Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(joint4Label, 4, 1, 1, 1);
 
         joint5Label = new QLabel(widget_7);
         joint5Label->setObjectName(QString::fromUtf8("joint5Label"));
+        joint5Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(joint5Label, 5, 1, 1, 1);
 
         joint6Label = new QLabel(widget_7);
         joint6Label->setObjectName(QString::fromUtf8("joint6Label"));
+        joint6Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(joint6Label, 6, 1, 1, 1);
 
@@ -1059,35 +1073,35 @@ public:
         color5PushButton->setText(QCoreApplication::translate("Form", "Color 5", nullptr));
         color4PushButton->setText(QCoreApplication::translate("Form", "Color 4", nullptr));
         color2PushButton->setText(QCoreApplication::translate("Form", "Color 2", nullptr));
-        xPoseLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
-        zPoseLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
-        rollPoseLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        xPoseLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        zPoseLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        rollPoseLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_11->setText(QCoreApplication::translate("Form", "Ry", nullptr));
-        pitchPoseLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        pitchPoseLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_10->setText(QCoreApplication::translate("Form", "Rx", nullptr));
         label_9->setText(QCoreApplication::translate("Form", "z", nullptr));
         label_13->setText(QCoreApplication::translate("Form", "Rz", nullptr));
         label_6->setText(QCoreApplication::translate("Form", "x", nullptr));
-        yawPoseLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        yawPoseLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_8->setText(QCoreApplication::translate("Form", "y", nullptr));
-        yPoseLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        yPoseLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_43->setText(QCoreApplication::translate("Form", "G1", nullptr));
-        gripperWidthLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        gripperWidthLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label->setText(QCoreApplication::translate("Form", "Presets", nullptr));
         label_30->setText(QCoreApplication::translate("Form", "J1", nullptr));
         label_33->setText(QCoreApplication::translate("Form", "J2", nullptr));
-        joint1Label->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        joint1Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_34->setText(QCoreApplication::translate("Form", "J3", nullptr));
-        gripperAngleLabel->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        gripperAngleLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_7->setText(QCoreApplication::translate("Form", "G1", nullptr));
         label_36->setText(QCoreApplication::translate("Form", "J5", nullptr));
         label_35->setText(QCoreApplication::translate("Form", "J4", nullptr));
         label_37->setText(QCoreApplication::translate("Form", "J6", nullptr));
-        joint2Label->setText(QCoreApplication::translate("Form", "0.0", nullptr));
-        joint3Label->setText(QCoreApplication::translate("Form", "0.0", nullptr));
-        joint4Label->setText(QCoreApplication::translate("Form", "0.0", nullptr));
-        joint5Label->setText(QCoreApplication::translate("Form", "0.0", nullptr));
-        joint6Label->setText(QCoreApplication::translate("Form", "0.0", nullptr));
+        joint2Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint3Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint4Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint5Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint6Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_5->setText(QCoreApplication::translate("Form", "Positions", nullptr));
         label_28->setText(QCoreApplication::translate("Form", "Large Drive", nullptr));
         largeDriveGripperGrabPushButton->setText(QCoreApplication::translate("Form", "Grab", nullptr));
@@ -1132,4 +1146,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // FORMXXUORB_H
+#endif // FORMYBCBOO_H

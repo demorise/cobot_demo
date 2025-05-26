@@ -557,21 +557,30 @@
       <item row="1" column="1">
        <widget class="QLabel" name="xPoseLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="zPoseLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="rollPoseLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -585,7 +594,10 @@
       <item row="5" column="1">
        <widget class="QLabel" name="pitchPoseLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -620,7 +632,10 @@
       <item row="6" column="1">
        <widget class="QLabel" name="yawPoseLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -634,7 +649,10 @@
       <item row="2" column="1">
        <widget class="QLabel" name="yPoseLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -648,7 +666,10 @@
       <item row="0" column="1">
        <widget class="QLabel" name="gripperWidthLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -713,7 +734,10 @@
       <item row="1" column="1">
        <widget class="QLabel" name="joint1Label">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -727,7 +751,10 @@
       <item row="0" column="1">
        <widget class="QLabel" name="gripperAngleLabel">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -762,35 +789,50 @@
       <item row="2" column="1">
        <widget class="QLabel" name="joint2Label">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="joint3Label">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="joint4Label">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="5" column="1">
        <widget class="QLabel" name="joint5Label">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="6" column="1">
        <widget class="QLabel" name="joint6Label">
         <property name="text">
-         <string>0.0</string>
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
