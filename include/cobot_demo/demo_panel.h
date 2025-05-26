@@ -48,8 +48,9 @@ private:
   rclcpp::Node::SharedPtr nh_;
   robot_commander::RobotCommander rc_;
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_;
-
-void jointStateCallback(const sensor_msgs::msg::JointState & msg) const;
+  std::shared_ptr<tf2_ros::TransformListener> tf_listener_{nullptr};
+  std::unique_ptr<tf2_ros::Buffer> tf_buffer_;
+  void jointStateCallback(const sensor_msgs::msg::JointState & msg) const;
 
 protected:
   Ui::Form* ui_form_;
