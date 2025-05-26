@@ -39,7 +39,9 @@ DemoPanel::DemoPanel(QWidget * parent)
     connect(ui_form_->leftStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
     connect(ui_form_->rightLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
     connect(ui_form_->rightStandingPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
-    connect(ui_form_->righttSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->rightSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->wallPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->windowPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
 
     // Joint sliders
     connect(ui_form_->joint1Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
@@ -179,53 +181,55 @@ void DemoPanel::goToPredefinedPose(bool clicked)
 {
     std::vector<double> joints;
 
-    if (qobject_cast<QPushButton*>(sender()) == ui_form_->centerSeatedPushButton)//("Seated Center (Monitor)")
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->leftStandingPushButton)
     {
-        joints = {0.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        joints = {69.0, -3.0, -3.0, -41.0, 95.0, 0.0};
     }
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->leftSeatedPushButton)//("Seated Left Limit")
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->centerStandingPushButton)
     {
-        joints = {15.0, 110.0, -110.0, -35.0, 95.0, 0.0};
+        joints = {0.0, -3.0, -3.0, -41.0, 95.0, 0.0};
     }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Seated Target")
-    // {
-    //     joints = {25.0, 110.0, -110.0, -35.0, 95.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Seated Crusher")
-    // {
-    //     joints = {-30.0, 110.0, -110.0, -35.0, 95.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Target")
-    // {
-    //     joints = {25.0, 0.0, 0.0, -55.0, 90.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Desk Overview")
-    // {
-    //     joints = {0.0, 0.0, 0.0, -55.0, 90.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Standing Crusher")
-    // {
-    //     joints = {-35.0, 0.0, 0.0, -55.0, 90.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in Target")
-    // {
-    //     joints = {30.0, 0.0, -90.0, 35.0, 90.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in TV")
-    // {
-    //     joints = {0.0, 0.0, -90.0, 50.0, 90.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in Keyboard")
-    // {
-    //     joints = {0.0, 0.0, -90.0, 0.0, 90.0, 0.0};
-    // }
-    // else if (qobject_cast<QPushButton*>(sender()) == ui_form_.AAA)//("Leaned in ESC Key")
-    // {
-    //     joints = {25.0, 0.0, -135.0, 65.0, 90.0, 0.0};
-    // }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->rightStandingPushButton)
+    {
+        joints = {-40.0, -4.0, -4.0, -42.0, 95.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->leftLeaningPushButton)
+    {
+        joints = {69.0, 38.0, -117.0, 39.0, 94.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->centerLeaningPushButton)
+    {
+        joints = {0.0, 40.0, -111.0, 30.0, 94.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->rightLeaningPushButton)
+    {
+        joints = {-40.0, 40.0, -111.0, 30.0, 94.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->leftSeatedPushButton)
+    {
+        joints = {40.0, 112.0, -111.0, -25.0, 94.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->centerSeatedPushButton)
+    {
+        joints = {0.0, 112.0, -111.0, -25.0, 94.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->rightSeatedPushButton)
+    {
+        joints = {-40.0, 112.0, -111.0, -25.0, 94.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->wallPushButton)
+    {
+        joints = {109.0, 34.0, -98.0, 45.0, 90.0, 0.0};
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->windowPushButton)
+    {
+        joints = {-1.0, -5.0, -5.0, 40.0, 94.0, 0.0};
+    }
     else
     {
-        joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+        RCLCPP_ERROR(nh_->get_logger(), "Invalid pose");
+        return;
+        //joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
     }
 
     std::thread t = std::thread([this, joints]()
@@ -237,9 +241,6 @@ void DemoPanel::goToPredefinedPose(bool clicked)
 
     t.detach();
 }
-
-
-
 
 void DemoPanel::releaseObject(bool clicked)
 {

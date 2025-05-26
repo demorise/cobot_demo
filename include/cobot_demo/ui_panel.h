@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'formSXhiKT.ui'
+** Form generated from reading UI file 'formXXUORB.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef FORMSXHIKT_H
-#define FORMSXHIKT_H
+#ifndef FORMXXUORB_H
+#define FORMXXUORB_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -31,7 +31,7 @@ public:
     QPushButton *pushButton_4;
     QSpacerItem *verticalSpacer_3;
     QPushButton *pushButton_39;
-    QPushButton *pushButton_3;
+    QPushButton *windowPushButton;
     QPushButton *pushButton;
     QPushButton *pushButton_38;
     QSpacerItem *verticalSpacer_4;
@@ -44,14 +44,14 @@ public:
     QPushButton *pushButton_7;
     QPushButton *pushButton_8;
     QPushButton *pushButton_40;
-    QPushButton *pushButton_2;
+    QPushButton *wallPushButton;
     QWidget *widget_2;
     QGridLayout *gridLayout_7;
     QPushButton *leftStandingPushButton;
     QPushButton *centerSeatedPushButton;
     QPushButton *leftLeaningPushButton;
     QPushButton *centerStandingPushButton;
-    QPushButton *righttSeatedPushButton;
+    QPushButton *rightSeatedPushButton;
     QLabel *label_4;
     QLabel *label_3;
     QLabel *label_2;
@@ -192,12 +192,12 @@ public:
 
         gridLayout_6->addWidget(pushButton_39, 7, 2, 1, 1);
 
-        pushButton_3 = new QPushButton(widget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        sizePolicy1.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
-        pushButton_3->setSizePolicy(sizePolicy1);
+        windowPushButton = new QPushButton(widget);
+        windowPushButton->setObjectName(QString::fromUtf8("windowPushButton"));
+        sizePolicy1.setHeightForWidth(windowPushButton->sizePolicy().hasHeightForWidth());
+        windowPushButton->setSizePolicy(sizePolicy1);
 
-        gridLayout_6->addWidget(pushButton_3, 1, 4, 1, 1);
+        gridLayout_6->addWidget(windowPushButton, 1, 4, 1, 1);
 
         pushButton = new QPushButton(widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
@@ -271,12 +271,12 @@ public:
 
         gridLayout_6->addWidget(pushButton_40, 7, 4, 1, 1);
 
-        pushButton_2 = new QPushButton(widget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        sizePolicy1.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
-        pushButton_2->setSizePolicy(sizePolicy1);
+        wallPushButton = new QPushButton(widget);
+        wallPushButton->setObjectName(QString::fromUtf8("wallPushButton"));
+        sizePolicy1.setHeightForWidth(wallPushButton->sizePolicy().hasHeightForWidth());
+        wallPushButton->setSizePolicy(sizePolicy1);
 
-        gridLayout_6->addWidget(pushButton_2, 1, 2, 1, 1);
+        gridLayout_6->addWidget(wallPushButton, 1, 2, 1, 1);
 
 
         gridLayout->addWidget(widget, 1, 0, 4, 1);
@@ -318,12 +318,12 @@ public:
 
         gridLayout_7->addWidget(centerStandingPushButton, 1, 1, 1, 1);
 
-        righttSeatedPushButton = new QPushButton(widget_2);
-        righttSeatedPushButton->setObjectName(QString::fromUtf8("righttSeatedPushButton"));
-        sizePolicy2.setHeightForWidth(righttSeatedPushButton->sizePolicy().hasHeightForWidth());
-        righttSeatedPushButton->setSizePolicy(sizePolicy2);
+        rightSeatedPushButton = new QPushButton(widget_2);
+        rightSeatedPushButton->setObjectName(QString::fromUtf8("rightSeatedPushButton"));
+        sizePolicy2.setHeightForWidth(rightSeatedPushButton->sizePolicy().hasHeightForWidth());
+        rightSeatedPushButton->setSizePolicy(sizePolicy2);
 
-        gridLayout_7->addWidget(righttSeatedPushButton, 5, 2, 1, 1);
+        gridLayout_7->addWidget(rightSeatedPushButton, 5, 2, 1, 1);
 
         label_4 = new QLabel(widget_2);
         label_4->setObjectName(QString::fromUtf8("label_4"));
@@ -1032,7 +1032,7 @@ public:
         Form->setWindowTitle(QCoreApplication::translate("Form", "Form", nullptr));
         pushButton_4->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_39->setText(QCoreApplication::translate("Form", "Preset", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("Form", "Window", nullptr));
+        windowPushButton->setText(QCoreApplication::translate("Form", "Window", nullptr));
         pushButton->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_38->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_5->setText(QCoreApplication::translate("Form", "Preset", nullptr));
@@ -1041,12 +1041,12 @@ public:
         pushButton_7->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_8->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_40->setText(QCoreApplication::translate("Form", "Preset", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Form", "Wall", nullptr));
+        wallPushButton->setText(QCoreApplication::translate("Form", "Wall", nullptr));
         leftStandingPushButton->setText(QCoreApplication::translate("Form", "Left", nullptr));
         centerSeatedPushButton->setText(QCoreApplication::translate("Form", "Center", nullptr));
         leftLeaningPushButton->setText(QCoreApplication::translate("Form", "Left", nullptr));
         centerStandingPushButton->setText(QCoreApplication::translate("Form", "Center", nullptr));
-        righttSeatedPushButton->setText(QCoreApplication::translate("Form", "Right", nullptr));
+        rightSeatedPushButton->setText(QCoreApplication::translate("Form", "Right", nullptr));
         label_4->setText(QCoreApplication::translate("Form", "Seated", nullptr));
         label_3->setText(QCoreApplication::translate("Form", "Leaning", nullptr));
         label_2->setText(QCoreApplication::translate("Form", "Standing", nullptr));
@@ -1132,4 +1132,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // FORMSXHIKT_H
+#endif // FORMXXUORB_H
