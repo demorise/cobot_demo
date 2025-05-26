@@ -6,6 +6,7 @@ namespace cobot_demo
 DemoPanel::DemoPanel(QWidget * parent) 
     : rviz_common::Panel(parent), 
       ui_form_(new Ui::Form()),
+      nh_{ std::make_shared<rclcpp::Node>("demo_panel") },
       rc_()
 {
     ui_form_->setupUi(this);
@@ -48,13 +49,57 @@ DemoPanel::DemoPanel(QWidget * parent)
     connect(ui_form_->joint5Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
     connect(ui_form_->joint6Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
 
-    nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
+    // nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
+
+  
 }
+
+
+void DemoPanel::onInitialize()
+{
+  nh_ = this->getDisplayContext()->getRosNodeAbstraction().lock()->get_raw_node();
+
+  joint_state_sub_ = nh_->create_subscription<sensor_msgs::msg::JointState>(
+      "joint_states", 10, std::bind(&DemoPanel::jointStateCallback, this, std::placeholders::_1));
+
+}
+
 
 DemoPanel::~DemoPanel()
 {
 
 }
+
+
+
+void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg) const
+{
+    for (int i = 0; i < msg.name.size(); ++i)
+    {
+        if(msg.name[i]=="gripper_controller")
+            ui_form_->gripperAngleLabel->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+    
+        if(msg.name[i]=="joint1")
+            ui_form_->joint1Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+
+        if(msg.name[i]=="joint2")
+            ui_form_->joint2Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+
+        if(msg.name[i]=="joint3")
+            ui_form_->joint3Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+
+        if(msg.name[i]=="joint4")
+            ui_form_->joint4Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+
+        if(msg.name[i]=="joint5")
+            ui_form_->joint5Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+
+        if(msg.name[i]=="joint6")
+            ui_form_->joint6Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+    }
+}
+
+
 
 void DemoPanel::moveToTarget(bool clicked)
 {
@@ -226,10 +271,6 @@ void DemoPanel::load(const rviz_common::Config &conf)
     Panel::load(conf);
 }
 
-void DemoPanel::onInitialize()
-{
-
-}
 }
 
 #include <pluginlib/class_list_macros.hpp>

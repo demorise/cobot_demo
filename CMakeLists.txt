@@ -13,6 +13,7 @@ set(THIS_PACKAGE_FIND
   rviz_rendering
   rviz_ogre_vendor
   geometry_msgs
+  sensor_msgs
   visualization_msgs
   moveit
   moveit_core
@@ -43,6 +44,7 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   rviz_rendering
   rviz_ogre_vendor
   geometry_msgs
+  sensor_msgs
   visualization_msgs
   moveit
   moveit_core
