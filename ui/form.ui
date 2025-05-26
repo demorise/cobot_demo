@@ -82,7 +82,7 @@
        </widget>
       </item>
       <item row="1" column="4">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="windowPushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -263,7 +263,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="wallPushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -340,7 +340,7 @@
        </widget>
       </item>
       <item row="5" column="2">
-       <widget class="QPushButton" name="righttSeatedPushButton">
+       <widget class="QPushButton" name="rightSeatedPushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
