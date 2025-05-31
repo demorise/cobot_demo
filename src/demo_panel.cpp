@@ -53,8 +53,85 @@ DemoPanel::DemoPanel(QWidget * parent)
 
     // nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
 
-  
+    connect(ui_form_->gripperNegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint1NegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint2NegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint3NegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint4NegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint5NegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint6NegativePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->gripperPositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint1PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint2PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint3PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint4PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint5PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
+    connect(ui_form_->joint6PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
 }
+
+
+void DemoPanel::jointPushButtonCallback(bool clicked)
+{
+    double joint_delta = 5.0;
+
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->gripperNegativePushButton)
+    {
+        ui_form_->gripperSlider->setValue(ui_form_->gripperSlider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint1NegativePushButton)
+    {
+        ui_form_->joint1Slider->setValue(ui_form_->joint1Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint2NegativePushButton)
+    {
+        ui_form_->joint2Slider->setValue(ui_form_->joint2Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint3NegativePushButton)
+    {
+        ui_form_->joint3Slider->setValue(ui_form_->joint3Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint4NegativePushButton)
+    {
+        ui_form_->joint4Slider->setValue(ui_form_->joint4Slider->value() - joint_delta);
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint5NegativePushButton)
+    {
+        ui_form_->joint5Slider->setValue(ui_form_->joint5Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint6NegativePushButton)
+    {
+        ui_form_->joint6Slider->setValue(ui_form_->joint6Slider->value() - joint_delta);
+    }  
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->gripperPositivePushButton)
+    {
+        ui_form_->gripperSlider->setValue(ui_form_->gripperSlider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint1PositivePushButton)
+    {
+        ui_form_->joint1Slider->setValue(ui_form_->joint1Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint2PositivePushButton)
+    {
+        ui_form_->joint2Slider->setValue(ui_form_->joint2Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint3PositivePushButton)
+    {
+        ui_form_->joint3Slider->setValue(ui_form_->joint3Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint4PositivePushButton)
+    {
+        ui_form_->joint4Slider->setValue(ui_form_->joint4Slider->value() + joint_delta);
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint5PositivePushButton)
+    {
+        ui_form_->joint5Slider->setValue(ui_form_->joint5Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint6PositivePushButton)
+    {
+        ui_form_->joint6Slider->setValue(ui_form_->joint6Slider->value() + joint_delta);
+    } 
+}
+
 
 
 void DemoPanel::onInitialize()
