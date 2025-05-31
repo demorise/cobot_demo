@@ -42,6 +42,7 @@ protected Q_SLOTS:
   void releaseObject(bool clicked);
   void goToPredefinedPose(bool clicked);
   void jointSliderCallback(int i);
+  void jointPushButtonCallback(bool clicked);
 
 private:
   void onInitialize() override;
