@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'formybcbOO.ui'
+** Form generated from reading UI file 'formfFDijv.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef FORMYBCBOO_H
-#define FORMYBCBOO_H
+#ifndef FORMFFDIJV_H
+#define FORMFFDIJV_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -32,7 +32,7 @@ public:
     QSpacerItem *verticalSpacer_3;
     QPushButton *pushButton_39;
     QPushButton *windowPushButton;
-    QPushButton *pushButton;
+    QPushButton *preset1PushButton;
     QPushButton *pushButton_38;
     QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton_5;
@@ -199,12 +199,12 @@ public:
 
         gridLayout_6->addWidget(windowPushButton, 1, 4, 1, 1);
 
-        pushButton = new QPushButton(widget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy1);
+        preset1PushButton = new QPushButton(widget);
+        preset1PushButton->setObjectName(QString::fromUtf8("preset1PushButton"));
+        sizePolicy1.setHeightForWidth(preset1PushButton->sizePolicy().hasHeightForWidth());
+        preset1PushButton->setSizePolicy(sizePolicy1);
 
-        gridLayout_6->addWidget(pushButton, 1, 0, 1, 1);
+        gridLayout_6->addWidget(preset1PushButton, 1, 0, 1, 1);
 
         pushButton_38 = new QPushButton(widget);
         pushButton_38->setObjectName(QString::fromUtf8("pushButton_38"));
@@ -1047,7 +1047,7 @@ public:
         pushButton_4->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_39->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         windowPushButton->setText(QCoreApplication::translate("Form", "Window", nullptr));
-        pushButton->setText(QCoreApplication::translate("Form", "Preset", nullptr));
+        preset1PushButton->setText(QCoreApplication::translate("Form", "Preset 1", nullptr));
         pushButton_38->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_5->setText(QCoreApplication::translate("Form", "Preset", nullptr));
         pushButton_9->setText(QCoreApplication::translate("Form", "Sway", nullptr));
@@ -1146,4 +1146,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // FORMYBCBOO_H
+#endif // FORMFFDIJV_H

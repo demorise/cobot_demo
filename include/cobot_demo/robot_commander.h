@@ -38,7 +38,7 @@ public:
 
   bool setGripperPosition(const std::vector<double>& joint_positions);
 
-  bool getTargetPose(geometry_msgs::msg::Pose& target_pose);
+  bool getTargetPose(geometry_msgs::msg::Pose& target_pose, std::string target_frame = "target");
 
   bool getManipulatorJointPositions(std::vector<double>& joint_positions);
 

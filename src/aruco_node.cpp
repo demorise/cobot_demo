@@ -46,11 +46,11 @@ public:
     tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(node_);
 
     // Camera calibration parameters (replace with your own)
-    camera_matrix_ = (cv::Mat_<double>(3, 3) << 
-        471.846078, 0.0, 306.677853, 
-        0.0, 461.828115, 250.822055, 
+    camera_matrix_ = (cv::Mat_<double>(3, 3) <<
+        374.218296, 0.000000, 327.269541,
+        0.000000, 372.491787, 255.165328,
         0.0, 0.0, 1.0);
-    dist_coeffs_ = (cv::Mat_<double>(1, 5) << -0.021106, -0.077237, 0.007364, -0.000142, 0);
+    dist_coeffs_ = (cv::Mat_<double>(1, 5) << -0.212865, 0.052493, 0.000996, 0.001153, 0.000000);
   }
 
   ~ArucoNode()
@@ -60,7 +60,7 @@ public:
   }
 
 private:
-    void broadcastArucoTF(cv::Vec3d tvec, cv::Vec3d rvec, int i)
+    void broadcastArucoTF(cv::Vec3d tvec, cv::Vec3d rvec, int marker_id)
     {
         // Translation
         Eigen::Vector3d eigen_trans;
@@ -84,19 +84,58 @@ private:
         t_aruco.header.frame_id = "camera";
         t_aruco.child_frame_id = "aruco";//+ std::to_string(i);
         // std::cout<<T.matrix()<<std::endl;
+        if (marker_id==36)
+        {
+            t_aruco.child_frame_id = "aruco_36";
+        }
+        else if(marker_id==165)
+        {
+            t_aruco.child_frame_id = "aruco_165";
+        }
+        else
+        {
+            RCLCPP_ERROR_STREAM(node_->get_logger(), "Invalid aruco marker ID: " << marker_id);
+            return;
+        }
         tf_broadcaster_->sendTransform(t_aruco);
 
-        geometry_msgs::msg::TransformStamped t_target;//applyRotation(t,0, 0, -172.926);
+        geometry_msgs::msg::TransformStamped t_target;
+        tf2::Quaternion q;
+
+        t_target.header.frame_id = "aruco";
+        t_target.child_frame_id = "target";
         t_target.transform.translation.x = -0.019;
         t_target.transform.translation.y = 0.013;
         t_target.transform.translation.z = -0.032;
-        tf2::Quaternion q;
         q.setRPY(170.743*(M_PI/180.0), 15.935*(M_PI/180.0), 98.021*(M_PI/180.0));
+  
+        if (marker_id==36)
+        {
+            t_target.header.frame_id = "aruco_36";
+            t_target.child_frame_id = "large_drive";
+            t_target.transform.translation.x = 0;
+            t_target.transform.translation.y = 0;
+            t_target.transform.translation.z = 0;
+            q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
+        }
+        else if(marker_id==165)
+        {
+            t_target.header.frame_id = "aruco_165";
+            t_target.child_frame_id = "small_drive";
+            t_target.transform.translation.x = 0;
+            t_target.transform.translation.y = 0;
+            t_target.transform.translation.z = 0;
+            q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
+        }
+
+
         q.normalize();
         geometry_msgs::msg::Quaternion msg_quat = tf2::toMsg(q);
         t_target.header.stamp = node_->get_clock()->now();
-        t_target.header.frame_id = "aruco";
-        t_target.child_frame_id = "target";//+ std::to_string(i);
+
+
+
+
         t_target.transform.rotation = msg_quat;
         tf_broadcaster_->sendTransform(t_target);
     };
@@ -131,7 +170,7 @@ private:
             for (size_t i = 0; i < marker_ids.size(); ++i) 
             {
                 cv::aruco::drawAxis(image, camera_matrix_, dist_coeffs_, rvecs[i], tvecs[i], marker_size_ * 0.5);
-                broadcastArucoTF(tvecs[i], rvecs[i], i);
+                broadcastArucoTF(tvecs[i], rvecs[i], marker_ids[i]);
             }
         }
 

@@ -57,52 +57,39 @@
     <!-- Camera frame -->
     <link name="camera"/>
     <joint name="link6-camera" type="fixed">
-      <origin xyz="0.0762 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0.04405 0.0508" rpy="0 0 0"/>
       <parent link="link6"/>
       <child link="camera"/>
     </joint>
 
     <!-- Aruco frame for simulation-->
-    <link name="aruco"/>
-    <joint name="base-aruco" type="fixed">
-      <origin xyz="0.247 0.219 0.066" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+    <link name="aruco_36"/> <!-- Large drive-->
+    <joint name="base-aruco-36" type="fixed">
+      <origin xyz="0.176 -0.344 0.124" rpy="${radians(0.361)} ${radians(1.711)} ${radians(-126.413)}"/>
       <parent link="base_link"/>
-      <child link="aruco"/>
+      <child link="aruco_36"/>
+    </joint>
+
+    <link name="aruco_165"/> <!-- Small drive-->
+    <joint name="base-aruco-165" type="fixed">
+      <origin xyz="0.267 0.219 0.066" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+      <parent link="base_link"/>
+      <child link="aruco_165"/>
     </joint>
 
     <!-- Target frame for simulation-->
-    <link name="target"/>
-    <joint name="aruco-target" type="fixed">
-      <origin xyz="0.0 0.0 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
-      <parent link="aruco"/>
-      <child link="target"/>
+    <link name="large_drive"/>
+    <joint name="aruco-large_drive" type="fixed">
+      <origin xyz="0.0 0.085 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
+      <parent link="aruco_36"/>
+      <child link="large_drive"/>
     </joint>
 
-    <!-- HDD caddy for simulation-->
-    <material name="black">
-      <color rgba="0 0 0 1"/>
-    </material>
-
-    <link name="hdd_caddy">
-      <visual>
-        <geometry>
-         <mesh filename="package://cobot_demo/urdf/meshes/hdd_caddy.dae"/>
-         <material name="black"/>
-        </geometry>
-      <origin xyz = "0 0 0" rpy = "0 0 0"/>
-      </visual>
-      <collision>
-        <geometry>
-         <mesh filename="package://cobot_demo/urdf/meshes/hdd_caddy.dae"/>
-        </geometry>
-      <origin xyz = "0 0 0" rpy = "0 0 0"/>
-      </collision>
-    </link>
-
-    <joint name="aruco-hdd_caddy" type="fixed">
-      <origin xyz="0 0 0" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
-      <parent link="aruco"/>
-      <child link="hdd_caddy"/>
+    <link name="small_drive"/>
+    <joint name="aruco-small_drive" type="fixed">
+      <origin xyz="0.0 0.0 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
+      <parent link="aruco_165"/>
+      <child link="small_drive"/>
     </joint>
 
 </robot>

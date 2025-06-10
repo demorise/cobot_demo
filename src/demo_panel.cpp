@@ -42,6 +42,7 @@ DemoPanel::DemoPanel(QWidget * parent)
     connect(ui_form_->rightSeatedPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
     connect(ui_form_->wallPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
     connect(ui_form_->windowPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
+    connect(ui_form_->preset1PushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
 
     // Joint sliders
     connect(ui_form_->joint1Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
@@ -136,15 +137,18 @@ void DemoPanel::jointPushButtonCallback(bool clicked)
 
 void DemoPanel::onInitialize()
 {
-  nh_ = this->getDisplayContext()->getRosNodeAbstraction().lock()->get_raw_node();
+    nh_ = this->getDisplayContext()->getRosNodeAbstraction().lock()->get_raw_node();
 
-  joint_state_sub_ = nh_->create_subscription<sensor_msgs::msg::JointState>(
-      "joint_states", 10, std::bind(&DemoPanel::jointStateCallback, this, std::placeholders::_1));
+    joint_state_sub_ = nh_->create_subscription<sensor_msgs::msg::JointState>(
+          "joint_states", 10, std::bind(&DemoPanel::jointStateCallback, this, std::placeholders::_1));
 
     tf_buffer_ =
       std::make_unique<tf2_ros::Buffer>(nh_->get_clock());
+
     tf_listener_ =
       std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+
+    drive_holder_pub_ = nh_->create_publisher<visualization_msgs::msg::Marker>("drive_holder_mesh", 1);
 
 }
 
@@ -154,10 +158,41 @@ DemoPanel::~DemoPanel()
 
 }
 
+void DemoPanel::publishMesh() const
+{
+    visualization_msgs::msg::Marker marker;
+    marker.header.frame_id = "aruco_36";
+    marker.header.stamp = rclcpp::Clock().now();
+    marker.ns = "hdd_caddy";
+    marker.id = 0;
+    marker.type = visualization_msgs::msg::Marker::MESH_RESOURCE;
+    marker.mesh_resource = "package://cobot_demo/urdf/meshes/hdd_caddy.dae";
+    marker.action = visualization_msgs::msg::Marker::ADD;
+    marker.pose.position.x = 0.03;
+    marker.pose.position.y = -0.03;
+    marker.pose.position.z = 0;
+    tf2::Quaternion q;
+    q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 90.0*(M_PI/180.0));
+    q.normalize();
+    geometry_msgs::msg::Quaternion msg_quat = tf2::toMsg(q);
+    marker.pose.orientation = msg_quat;
+    marker.scale.x = 1.0;
+    marker.scale.y = 1.0;
+    marker.scale.z = 1.0;
+
+    marker.color.r = 0.1f;
+    marker.color.g = 0.1f;
+    marker.color.b = 0.1f;
+    marker.color.a = 1.0;
+    
+    marker.lifetime = rclcpp::Duration::from_nanoseconds(0);
+    drive_holder_pub_->publish(marker);
+}
 
 
 void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg) const
 {
+    publishMesh();
     for (int i = 0; i < msg.name.size(); ++i)
     {
         if(msg.name[i]=="gripper_controller")
@@ -209,9 +244,18 @@ void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg) con
 
 void DemoPanel::moveToTarget(bool clicked)
 {
-    std::thread t = std::thread([this](){
+    std::string target_frame;
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->largeDriveAutopushButton)
+    {
+        target_frame = "large_drive";
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->smallDriveAutopushButton)
+    {
+        target_frame = "small_drive";
+    } 
+    std::thread t = std::thread([this, target_frame](){
         geometry_msgs::msg::Pose target_pose;
-        rc_.getTargetPose(target_pose);
+        rc_.getTargetPose(target_pose, target_frame);
         rc_.planToCartesianPose(target_pose);
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
@@ -329,6 +373,12 @@ void DemoPanel::goToPredefinedPose(bool clicked)
     {
         joints = {-1.0, -5.0, -5.0, 40.0, 94.0, 0.0};
     }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->preset1PushButton)
+    {
+        joints = {-39.5, 39.4, -112.2, 29.4, 94.4, 0.3};
+    }
+
+
     else
     {
         RCLCPP_ERROR(nh_->get_logger(), "Invalid pose");

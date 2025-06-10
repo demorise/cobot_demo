@@ -123,12 +123,12 @@ namespace robot_commander
     }
   }
 
-  bool RobotCommander::getTargetPose(geometry_msgs::msg::Pose& target_pose)
+  bool RobotCommander::getTargetPose(geometry_msgs::msg::Pose& target_pose, std::string target_frame)
   {
     geometry_msgs::msg::Pose pose;
     getPose("gripper", "link6", pose);
     geometry_msgs::msg::TransformStamped t;
-    getTransform("base_link", "target", t);
+    getTransform("base_link", target_frame, t);
     target_pose = applyTransform(pose, t);
     return true;
   }
