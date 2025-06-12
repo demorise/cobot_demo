@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'formfFDijv.ui'
+** Form generated from reading UI file 'formauGlAs.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef FORMFFDIJV_H
-#define FORMFFDIJV_H
+#ifndef FORMAUGLAS_H
+#define FORMAUGLAS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -89,18 +89,18 @@ public:
     QGridLayout *gridLayout_2;
     QLabel *label_30;
     QLabel *label_33;
-    QLabel *joint1Label;
+    QLabel *joint6Label;
     QLabel *label_34;
     QLabel *gripperAngleLabel;
     QLabel *label_7;
     QLabel *label_36;
     QLabel *label_35;
     QLabel *label_37;
-    QLabel *joint2Label;
-    QLabel *joint3Label;
-    QLabel *joint4Label;
     QLabel *joint5Label;
-    QLabel *joint6Label;
+    QLabel *joint4Label;
+    QLabel *joint3Label;
+    QLabel *joint2Label;
+    QLabel *joint1Label;
     QLabel *label_5;
     QWidget *widget_5;
     QGridLayout *gridLayout_9;
@@ -122,34 +122,34 @@ public:
     QFrame *line_5;
     QWidget *widget_6;
     QGridLayout *gridLayout_3;
-    QPushButton *joint4PositivePushButton;
-    QPushButton *joint5NegativePushButton;
-    QPushButton *gripperNegativePushButton;
     QPushButton *joint3PositivePushButton;
-    QSlider *joint2Slider;
-    QLabel *label_23;
-    QPushButton *joint6PositivePushButton;
-    QSlider *joint4Slider;
-    QLabel *label_12;
     QPushButton *joint2NegativePushButton;
+    QPushButton *gripperNegativePushButton;
+    QPushButton *joint4PositivePushButton;
+    QSlider *joint5Slider;
+    QLabel *label_23;
+    QPushButton *joint1PositivePushButton;
     QSlider *joint3Slider;
-    QPushButton *joint1NegativePushButton;
-    QSlider *joint1Slider;
-    QPushButton *joint3NegativePushButton;
+    QLabel *label_12;
+    QPushButton *joint5NegativePushButton;
+    QSlider *joint4Slider;
+    QPushButton *joint6NegativePushButton;
+    QSlider *joint6Slider;
+    QPushButton *joint4NegativePushButton;
     QLabel *label_24;
     QLabel *label_22;
     QLabel *label_19;
     QPushButton *gripperPositivePushButton;
     QLabel *label_25;
     QLabel *label_21;
-    QPushButton *joint2PositivePushButton;
     QPushButton *joint5PositivePushButton;
-    QSlider *joint5Slider;
-    QSlider *joint6Slider;
-    QPushButton *joint1PositivePushButton;
+    QPushButton *joint2PositivePushButton;
+    QSlider *joint2Slider;
+    QSlider *joint1Slider;
+    QPushButton *joint6PositivePushButton;
     QSlider *gripperSlider;
-    QPushButton *joint6NegativePushButton;
-    QPushButton *joint4NegativePushButton;
+    QPushButton *joint1NegativePushButton;
+    QPushButton *joint3NegativePushButton;
 
     void setupUi(QWidget *Form)
     {
@@ -563,11 +563,11 @@ public:
 
         gridLayout_2->addWidget(label_33, 2, 0, 1, 1);
 
-        joint1Label = new QLabel(widget_7);
-        joint1Label->setObjectName(QString::fromUtf8("joint1Label"));
-        joint1Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        joint6Label = new QLabel(widget_7);
+        joint6Label->setObjectName(QString::fromUtf8("joint6Label"));
+        joint6Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        gridLayout_2->addWidget(joint1Label, 1, 1, 1, 1);
+        gridLayout_2->addWidget(joint6Label, 1, 1, 1, 1);
 
         label_34 = new QLabel(widget_7);
         label_34->setObjectName(QString::fromUtf8("label_34"));
@@ -600,35 +600,35 @@ public:
 
         gridLayout_2->addWidget(label_37, 6, 0, 1, 1);
 
-        joint2Label = new QLabel(widget_7);
-        joint2Label->setObjectName(QString::fromUtf8("joint2Label"));
-        joint2Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        joint5Label = new QLabel(widget_7);
+        joint5Label->setObjectName(QString::fromUtf8("joint5Label"));
+        joint5Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        gridLayout_2->addWidget(joint2Label, 2, 1, 1, 1);
-
-        joint3Label = new QLabel(widget_7);
-        joint3Label->setObjectName(QString::fromUtf8("joint3Label"));
-        joint3Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        gridLayout_2->addWidget(joint3Label, 3, 1, 1, 1);
+        gridLayout_2->addWidget(joint5Label, 2, 1, 1, 1);
 
         joint4Label = new QLabel(widget_7);
         joint4Label->setObjectName(QString::fromUtf8("joint4Label"));
         joint4Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        gridLayout_2->addWidget(joint4Label, 4, 1, 1, 1);
+        gridLayout_2->addWidget(joint4Label, 3, 1, 1, 1);
 
-        joint5Label = new QLabel(widget_7);
-        joint5Label->setObjectName(QString::fromUtf8("joint5Label"));
-        joint5Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        joint3Label = new QLabel(widget_7);
+        joint3Label->setObjectName(QString::fromUtf8("joint3Label"));
+        joint3Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        gridLayout_2->addWidget(joint5Label, 5, 1, 1, 1);
+        gridLayout_2->addWidget(joint3Label, 4, 1, 1, 1);
 
-        joint6Label = new QLabel(widget_7);
-        joint6Label->setObjectName(QString::fromUtf8("joint6Label"));
-        joint6Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        joint2Label = new QLabel(widget_7);
+        joint2Label->setObjectName(QString::fromUtf8("joint2Label"));
+        joint2Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        gridLayout_2->addWidget(joint6Label, 6, 1, 1, 1);
+        gridLayout_2->addWidget(joint2Label, 5, 1, 1, 1);
+
+        joint1Label = new QLabel(widget_7);
+        joint1Label->setObjectName(QString::fromUtf8("joint1Label"));
+        joint1Label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        gridLayout_2->addWidget(joint1Label, 6, 1, 1, 1);
 
 
         gridLayout->addWidget(widget_7, 1, 9, 4, 1);
@@ -782,21 +782,21 @@ public:
         widget_6->setSizePolicy(sizePolicy10);
         gridLayout_3 = new QGridLayout(widget_6);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
-        joint4PositivePushButton = new QPushButton(widget_6);
-        joint4PositivePushButton->setObjectName(QString::fromUtf8("joint4PositivePushButton"));
-        sizePolicy9.setHeightForWidth(joint4PositivePushButton->sizePolicy().hasHeightForWidth());
-        joint4PositivePushButton->setSizePolicy(sizePolicy9);
-        joint4PositivePushButton->setMaximumSize(QSize(50, 16777215));
+        joint3PositivePushButton = new QPushButton(widget_6);
+        joint3PositivePushButton->setObjectName(QString::fromUtf8("joint3PositivePushButton"));
+        sizePolicy9.setHeightForWidth(joint3PositivePushButton->sizePolicy().hasHeightForWidth());
+        joint3PositivePushButton->setSizePolicy(sizePolicy9);
+        joint3PositivePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint4PositivePushButton, 11, 2, 1, 1);
+        gridLayout_3->addWidget(joint3PositivePushButton, 11, 2, 1, 1);
 
-        joint5NegativePushButton = new QPushButton(widget_6);
-        joint5NegativePushButton->setObjectName(QString::fromUtf8("joint5NegativePushButton"));
-        sizePolicy9.setHeightForWidth(joint5NegativePushButton->sizePolicy().hasHeightForWidth());
-        joint5NegativePushButton->setSizePolicy(sizePolicy9);
-        joint5NegativePushButton->setMaximumSize(QSize(50, 16777215));
+        joint2NegativePushButton = new QPushButton(widget_6);
+        joint2NegativePushButton->setObjectName(QString::fromUtf8("joint2NegativePushButton"));
+        sizePolicy9.setHeightForWidth(joint2NegativePushButton->sizePolicy().hasHeightForWidth());
+        joint2NegativePushButton->setSizePolicy(sizePolicy9);
+        joint2NegativePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint5NegativePushButton, 13, 0, 1, 1);
+        gridLayout_3->addWidget(joint2NegativePushButton, 13, 0, 1, 1);
 
         gripperNegativePushButton = new QPushButton(widget_6);
         gripperNegativePushButton->setObjectName(QString::fromUtf8("gripperNegativePushButton"));
@@ -806,27 +806,27 @@ public:
 
         gridLayout_3->addWidget(gripperNegativePushButton, 1, 0, 1, 1);
 
-        joint3PositivePushButton = new QPushButton(widget_6);
-        joint3PositivePushButton->setObjectName(QString::fromUtf8("joint3PositivePushButton"));
-        sizePolicy9.setHeightForWidth(joint3PositivePushButton->sizePolicy().hasHeightForWidth());
-        joint3PositivePushButton->setSizePolicy(sizePolicy9);
-        joint3PositivePushButton->setMaximumSize(QSize(50, 16777215));
+        joint4PositivePushButton = new QPushButton(widget_6);
+        joint4PositivePushButton->setObjectName(QString::fromUtf8("joint4PositivePushButton"));
+        sizePolicy9.setHeightForWidth(joint4PositivePushButton->sizePolicy().hasHeightForWidth());
+        joint4PositivePushButton->setSizePolicy(sizePolicy9);
+        joint4PositivePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint3PositivePushButton, 9, 2, 1, 1);
+        gridLayout_3->addWidget(joint4PositivePushButton, 9, 2, 1, 1);
 
-        joint2Slider = new QSlider(widget_6);
-        joint2Slider->setObjectName(QString::fromUtf8("joint2Slider"));
+        joint5Slider = new QSlider(widget_6);
+        joint5Slider->setObjectName(QString::fromUtf8("joint5Slider"));
         QSizePolicy sizePolicy11(QSizePolicy::Expanding, QSizePolicy::Preferred);
         sizePolicy11.setHorizontalStretch(1);
         sizePolicy11.setVerticalStretch(0);
-        sizePolicy11.setHeightForWidth(joint2Slider->sizePolicy().hasHeightForWidth());
-        joint2Slider->setSizePolicy(sizePolicy11);
-        joint2Slider->setMinimum(-133);
-        joint2Slider->setMaximum(133);
-        joint2Slider->setTracking(false);
-        joint2Slider->setOrientation(Qt::Horizontal);
+        sizePolicy11.setHeightForWidth(joint5Slider->sizePolicy().hasHeightForWidth());
+        joint5Slider->setSizePolicy(sizePolicy11);
+        joint5Slider->setMinimum(-133);
+        joint5Slider->setMaximum(133);
+        joint5Slider->setTracking(false);
+        joint5Slider->setOrientation(Qt::Horizontal);
 
-        gridLayout_3->addWidget(joint2Slider, 7, 1, 1, 1);
+        gridLayout_3->addWidget(joint5Slider, 7, 1, 1, 1);
 
         label_23 = new QLabel(widget_6);
         label_23->setObjectName(QString::fromUtf8("label_23"));
@@ -838,24 +838,24 @@ public:
 
         gridLayout_3->addWidget(label_23, 10, 0, 1, 1);
 
-        joint6PositivePushButton = new QPushButton(widget_6);
-        joint6PositivePushButton->setObjectName(QString::fromUtf8("joint6PositivePushButton"));
-        sizePolicy9.setHeightForWidth(joint6PositivePushButton->sizePolicy().hasHeightForWidth());
-        joint6PositivePushButton->setSizePolicy(sizePolicy9);
-        joint6PositivePushButton->setMaximumSize(QSize(50, 16777215));
+        joint1PositivePushButton = new QPushButton(widget_6);
+        joint1PositivePushButton->setObjectName(QString::fromUtf8("joint1PositivePushButton"));
+        sizePolicy9.setHeightForWidth(joint1PositivePushButton->sizePolicy().hasHeightForWidth());
+        joint1PositivePushButton->setSizePolicy(sizePolicy9);
+        joint1PositivePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint6PositivePushButton, 15, 2, 1, 1);
+        gridLayout_3->addWidget(joint1PositivePushButton, 15, 2, 1, 1);
 
-        joint4Slider = new QSlider(widget_6);
-        joint4Slider->setObjectName(QString::fromUtf8("joint4Slider"));
-        sizePolicy11.setHeightForWidth(joint4Slider->sizePolicy().hasHeightForWidth());
-        joint4Slider->setSizePolicy(sizePolicy11);
-        joint4Slider->setMinimum(-146);
-        joint4Slider->setMaximum(146);
-        joint4Slider->setTracking(false);
-        joint4Slider->setOrientation(Qt::Horizontal);
+        joint3Slider = new QSlider(widget_6);
+        joint3Slider->setObjectName(QString::fromUtf8("joint3Slider"));
+        sizePolicy11.setHeightForWidth(joint3Slider->sizePolicy().hasHeightForWidth());
+        joint3Slider->setSizePolicy(sizePolicy11);
+        joint3Slider->setMinimum(-146);
+        joint3Slider->setMaximum(146);
+        joint3Slider->setTracking(false);
+        joint3Slider->setOrientation(Qt::Horizontal);
 
-        gridLayout_3->addWidget(joint4Slider, 11, 1, 1, 1);
+        gridLayout_3->addWidget(joint3Slider, 11, 1, 1, 1);
 
         label_12 = new QLabel(widget_6);
         label_12->setObjectName(QString::fromUtf8("label_12"));
@@ -864,52 +864,52 @@ public:
 
         gridLayout_3->addWidget(label_12, 3, 0, 1, 1);
 
-        joint2NegativePushButton = new QPushButton(widget_6);
-        joint2NegativePushButton->setObjectName(QString::fromUtf8("joint2NegativePushButton"));
-        sizePolicy9.setHeightForWidth(joint2NegativePushButton->sizePolicy().hasHeightForWidth());
-        joint2NegativePushButton->setSizePolicy(sizePolicy9);
-        joint2NegativePushButton->setMaximumSize(QSize(50, 16777215));
+        joint5NegativePushButton = new QPushButton(widget_6);
+        joint5NegativePushButton->setObjectName(QString::fromUtf8("joint5NegativePushButton"));
+        sizePolicy9.setHeightForWidth(joint5NegativePushButton->sizePolicy().hasHeightForWidth());
+        joint5NegativePushButton->setSizePolicy(sizePolicy9);
+        joint5NegativePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint2NegativePushButton, 7, 0, 1, 1);
+        gridLayout_3->addWidget(joint5NegativePushButton, 7, 0, 1, 1);
 
-        joint3Slider = new QSlider(widget_6);
-        joint3Slider->setObjectName(QString::fromUtf8("joint3Slider"));
-        sizePolicy11.setHeightForWidth(joint3Slider->sizePolicy().hasHeightForWidth());
-        joint3Slider->setSizePolicy(sizePolicy11);
-        joint3Slider->setMinimum(-143);
-        joint3Slider->setMaximum(143);
-        joint3Slider->setTracking(false);
-        joint3Slider->setOrientation(Qt::Horizontal);
+        joint4Slider = new QSlider(widget_6);
+        joint4Slider->setObjectName(QString::fromUtf8("joint4Slider"));
+        sizePolicy11.setHeightForWidth(joint4Slider->sizePolicy().hasHeightForWidth());
+        joint4Slider->setSizePolicy(sizePolicy11);
+        joint4Slider->setMinimum(-143);
+        joint4Slider->setMaximum(143);
+        joint4Slider->setTracking(false);
+        joint4Slider->setOrientation(Qt::Horizontal);
 
-        gridLayout_3->addWidget(joint3Slider, 9, 1, 1, 1);
+        gridLayout_3->addWidget(joint4Slider, 9, 1, 1, 1);
 
-        joint1NegativePushButton = new QPushButton(widget_6);
-        joint1NegativePushButton->setObjectName(QString::fromUtf8("joint1NegativePushButton"));
-        sizePolicy5.setHeightForWidth(joint1NegativePushButton->sizePolicy().hasHeightForWidth());
-        joint1NegativePushButton->setSizePolicy(sizePolicy5);
-        joint1NegativePushButton->setMaximumSize(QSize(50, 16777215));
+        joint6NegativePushButton = new QPushButton(widget_6);
+        joint6NegativePushButton->setObjectName(QString::fromUtf8("joint6NegativePushButton"));
+        sizePolicy5.setHeightForWidth(joint6NegativePushButton->sizePolicy().hasHeightForWidth());
+        joint6NegativePushButton->setSizePolicy(sizePolicy5);
+        joint6NegativePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint1NegativePushButton, 4, 0, 1, 1);
+        gridLayout_3->addWidget(joint6NegativePushButton, 4, 0, 1, 1);
 
-        joint1Slider = new QSlider(widget_6);
-        joint1Slider->setObjectName(QString::fromUtf8("joint1Slider"));
-        sizePolicy11.setHeightForWidth(joint1Slider->sizePolicy().hasHeightForWidth());
-        joint1Slider->setSizePolicy(sizePolicy11);
-        joint1Slider->setMinimumSize(QSize(50, 0));
-        joint1Slider->setMinimum(-165);
-        joint1Slider->setMaximum(165);
-        joint1Slider->setTracking(false);
-        joint1Slider->setOrientation(Qt::Horizontal);
+        joint6Slider = new QSlider(widget_6);
+        joint6Slider->setObjectName(QString::fromUtf8("joint6Slider"));
+        sizePolicy11.setHeightForWidth(joint6Slider->sizePolicy().hasHeightForWidth());
+        joint6Slider->setSizePolicy(sizePolicy11);
+        joint6Slider->setMinimumSize(QSize(50, 0));
+        joint6Slider->setMinimum(-165);
+        joint6Slider->setMaximum(165);
+        joint6Slider->setTracking(false);
+        joint6Slider->setOrientation(Qt::Horizontal);
 
-        gridLayout_3->addWidget(joint1Slider, 4, 1, 1, 1);
+        gridLayout_3->addWidget(joint6Slider, 4, 1, 1, 1);
 
-        joint3NegativePushButton = new QPushButton(widget_6);
-        joint3NegativePushButton->setObjectName(QString::fromUtf8("joint3NegativePushButton"));
-        sizePolicy9.setHeightForWidth(joint3NegativePushButton->sizePolicy().hasHeightForWidth());
-        joint3NegativePushButton->setSizePolicy(sizePolicy9);
-        joint3NegativePushButton->setMaximumSize(QSize(50, 16777215));
+        joint4NegativePushButton = new QPushButton(widget_6);
+        joint4NegativePushButton->setObjectName(QString::fromUtf8("joint4NegativePushButton"));
+        sizePolicy9.setHeightForWidth(joint4NegativePushButton->sizePolicy().hasHeightForWidth());
+        joint4NegativePushButton->setSizePolicy(sizePolicy9);
+        joint4NegativePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint3NegativePushButton, 9, 0, 1, 1);
+        gridLayout_3->addWidget(joint4NegativePushButton, 9, 0, 1, 1);
 
         label_24 = new QLabel(widget_6);
         label_24->setObjectName(QString::fromUtf8("label_24"));
@@ -954,60 +954,61 @@ public:
 
         gridLayout_3->addWidget(label_21, 6, 0, 1, 1);
 
-        joint2PositivePushButton = new QPushButton(widget_6);
-        joint2PositivePushButton->setObjectName(QString::fromUtf8("joint2PositivePushButton"));
-        sizePolicy9.setHeightForWidth(joint2PositivePushButton->sizePolicy().hasHeightForWidth());
-        joint2PositivePushButton->setSizePolicy(sizePolicy9);
-        joint2PositivePushButton->setMaximumSize(QSize(50, 16777215));
-
-        gridLayout_3->addWidget(joint2PositivePushButton, 7, 2, 1, 1);
-
         joint5PositivePushButton = new QPushButton(widget_6);
         joint5PositivePushButton->setObjectName(QString::fromUtf8("joint5PositivePushButton"));
         sizePolicy9.setHeightForWidth(joint5PositivePushButton->sizePolicy().hasHeightForWidth());
         joint5PositivePushButton->setSizePolicy(sizePolicy9);
         joint5PositivePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint5PositivePushButton, 13, 2, 1, 1);
+        gridLayout_3->addWidget(joint5PositivePushButton, 7, 2, 1, 1);
 
-        joint5Slider = new QSlider(widget_6);
-        joint5Slider->setObjectName(QString::fromUtf8("joint5Slider"));
-        sizePolicy11.setHeightForWidth(joint5Slider->sizePolicy().hasHeightForWidth());
-        joint5Slider->setSizePolicy(sizePolicy11);
-        joint5Slider->setMinimum(-166);
-        joint5Slider->setMaximum(166);
-        joint5Slider->setTracking(false);
-        joint5Slider->setOrientation(Qt::Horizontal);
+        joint2PositivePushButton = new QPushButton(widget_6);
+        joint2PositivePushButton->setObjectName(QString::fromUtf8("joint2PositivePushButton"));
+        sizePolicy9.setHeightForWidth(joint2PositivePushButton->sizePolicy().hasHeightForWidth());
+        joint2PositivePushButton->setSizePolicy(sizePolicy9);
+        joint2PositivePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint5Slider, 13, 1, 1, 1);
+        gridLayout_3->addWidget(joint2PositivePushButton, 13, 2, 1, 1);
 
-        joint6Slider = new QSlider(widget_6);
-        joint6Slider->setObjectName(QString::fromUtf8("joint6Slider"));
-        sizePolicy11.setHeightForWidth(joint6Slider->sizePolicy().hasHeightForWidth());
-        joint6Slider->setSizePolicy(sizePolicy11);
-        joint6Slider->setMinimum(-178);
-        joint6Slider->setMaximum(178);
-        joint6Slider->setTracking(false);
-        joint6Slider->setOrientation(Qt::Horizontal);
+        joint2Slider = new QSlider(widget_6);
+        joint2Slider->setObjectName(QString::fromUtf8("joint2Slider"));
+        sizePolicy11.setHeightForWidth(joint2Slider->sizePolicy().hasHeightForWidth());
+        joint2Slider->setSizePolicy(sizePolicy11);
+        joint2Slider->setMinimum(-166);
+        joint2Slider->setMaximum(166);
+        joint2Slider->setTracking(false);
+        joint2Slider->setOrientation(Qt::Horizontal);
 
-        gridLayout_3->addWidget(joint6Slider, 15, 1, 1, 1);
+        gridLayout_3->addWidget(joint2Slider, 13, 1, 1, 1);
 
-        joint1PositivePushButton = new QPushButton(widget_6);
-        joint1PositivePushButton->setObjectName(QString::fromUtf8("joint1PositivePushButton"));
-        sizePolicy5.setHeightForWidth(joint1PositivePushButton->sizePolicy().hasHeightForWidth());
-        joint1PositivePushButton->setSizePolicy(sizePolicy5);
-        joint1PositivePushButton->setMaximumSize(QSize(50, 16777215));
+        joint1Slider = new QSlider(widget_6);
+        joint1Slider->setObjectName(QString::fromUtf8("joint1Slider"));
+        sizePolicy11.setHeightForWidth(joint1Slider->sizePolicy().hasHeightForWidth());
+        joint1Slider->setSizePolicy(sizePolicy11);
+        joint1Slider->setMinimum(-178);
+        joint1Slider->setMaximum(178);
+        joint1Slider->setTracking(false);
+        joint1Slider->setOrientation(Qt::Horizontal);
 
-        gridLayout_3->addWidget(joint1PositivePushButton, 4, 2, 1, 1);
+        gridLayout_3->addWidget(joint1Slider, 15, 1, 1, 1);
+
+        joint6PositivePushButton = new QPushButton(widget_6);
+        joint6PositivePushButton->setObjectName(QString::fromUtf8("joint6PositivePushButton"));
+        sizePolicy5.setHeightForWidth(joint6PositivePushButton->sizePolicy().hasHeightForWidth());
+        joint6PositivePushButton->setSizePolicy(sizePolicy5);
+        joint6PositivePushButton->setMaximumSize(QSize(50, 16777215));
+
+        gridLayout_3->addWidget(joint6PositivePushButton, 4, 2, 1, 1);
 
         gripperSlider = new QSlider(widget_6);
         gripperSlider->setObjectName(QString::fromUtf8("gripperSlider"));
         sizePolicy11.setHeightForWidth(gripperSlider->sizePolicy().hasHeightForWidth());
         gripperSlider->setSizePolicy(sizePolicy11);
+        gripperSlider->setMinimum(0);
         gripperSlider->setMaximum(100);
         gripperSlider->setSingleStep(1);
-        gripperSlider->setValue(100);
-        gripperSlider->setSliderPosition(100);
+        gripperSlider->setValue(0);
+        gripperSlider->setSliderPosition(0);
         gripperSlider->setTracking(false);
         gripperSlider->setOrientation(Qt::Horizontal);
         gripperSlider->setTickPosition(QSlider::NoTicks);
@@ -1015,21 +1016,21 @@ public:
 
         gridLayout_3->addWidget(gripperSlider, 1, 1, 1, 1);
 
-        joint6NegativePushButton = new QPushButton(widget_6);
-        joint6NegativePushButton->setObjectName(QString::fromUtf8("joint6NegativePushButton"));
-        sizePolicy9.setHeightForWidth(joint6NegativePushButton->sizePolicy().hasHeightForWidth());
-        joint6NegativePushButton->setSizePolicy(sizePolicy9);
-        joint6NegativePushButton->setMaximumSize(QSize(50, 16777215));
+        joint1NegativePushButton = new QPushButton(widget_6);
+        joint1NegativePushButton->setObjectName(QString::fromUtf8("joint1NegativePushButton"));
+        sizePolicy9.setHeightForWidth(joint1NegativePushButton->sizePolicy().hasHeightForWidth());
+        joint1NegativePushButton->setSizePolicy(sizePolicy9);
+        joint1NegativePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint6NegativePushButton, 15, 0, 1, 1);
+        gridLayout_3->addWidget(joint1NegativePushButton, 15, 0, 1, 1);
 
-        joint4NegativePushButton = new QPushButton(widget_6);
-        joint4NegativePushButton->setObjectName(QString::fromUtf8("joint4NegativePushButton"));
-        sizePolicy9.setHeightForWidth(joint4NegativePushButton->sizePolicy().hasHeightForWidth());
-        joint4NegativePushButton->setSizePolicy(sizePolicy9);
-        joint4NegativePushButton->setMaximumSize(QSize(50, 16777215));
+        joint3NegativePushButton = new QPushButton(widget_6);
+        joint3NegativePushButton->setObjectName(QString::fromUtf8("joint3NegativePushButton"));
+        sizePolicy9.setHeightForWidth(joint3NegativePushButton->sizePolicy().hasHeightForWidth());
+        joint3NegativePushButton->setSizePolicy(sizePolicy9);
+        joint3NegativePushButton->setMaximumSize(QSize(50, 16777215));
 
-        gridLayout_3->addWidget(joint4NegativePushButton, 11, 0, 1, 1);
+        gridLayout_3->addWidget(joint3NegativePushButton, 11, 0, 1, 1);
 
         gridLayout_3->setColumnStretch(0, 1);
 
@@ -1088,20 +1089,20 @@ public:
         label_43->setText(QCoreApplication::translate("Form", "G1", nullptr));
         gripperWidthLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label->setText(QCoreApplication::translate("Form", "Presets", nullptr));
-        label_30->setText(QCoreApplication::translate("Form", "J1", nullptr));
-        label_33->setText(QCoreApplication::translate("Form", "J2", nullptr));
-        joint1Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
-        label_34->setText(QCoreApplication::translate("Form", "J3", nullptr));
+        label_30->setText(QCoreApplication::translate("Form", "J6", nullptr));
+        label_33->setText(QCoreApplication::translate("Form", "J5", nullptr));
+        joint6Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        label_34->setText(QCoreApplication::translate("Form", "J4", nullptr));
         gripperAngleLabel->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_7->setText(QCoreApplication::translate("Form", "G1", nullptr));
-        label_36->setText(QCoreApplication::translate("Form", "J5", nullptr));
-        label_35->setText(QCoreApplication::translate("Form", "J4", nullptr));
-        label_37->setText(QCoreApplication::translate("Form", "J6", nullptr));
-        joint2Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
-        joint3Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
-        joint4Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        label_36->setText(QCoreApplication::translate("Form", "J2", nullptr));
+        label_35->setText(QCoreApplication::translate("Form", "J3", nullptr));
+        label_37->setText(QCoreApplication::translate("Form", "J1", nullptr));
         joint5Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
-        joint6Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint4Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint3Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint2Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
+        joint1Label->setText(QCoreApplication::translate("Form", "000.0", nullptr));
         label_5->setText(QCoreApplication::translate("Form", "Positions", nullptr));
         label_28->setText(QCoreApplication::translate("Form", "Large Drive", nullptr));
         largeDriveGripperGrabPushButton->setText(QCoreApplication::translate("Form", "Grab", nullptr));
@@ -1115,27 +1116,27 @@ public:
         label_26->setText(QCoreApplication::translate("Form", "Small Drive", nullptr));
         smallDriveAutopushButton->setText(QCoreApplication::translate("Form", "Auto", nullptr));
         largeDriveAutopushButton->setText(QCoreApplication::translate("Form", "Auto", nullptr));
-        joint4PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
-        joint5NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
-        gripperNegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
         joint3PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
-        label_23->setText(QCoreApplication::translate("Form", "Joint 4", nullptr));
-        joint6PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
-        label_12->setText(QCoreApplication::translate("Form", "Joint 1", nullptr));
         joint2NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
-        joint1NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
-        joint3NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
-        label_24->setText(QCoreApplication::translate("Form", "Joint 5", nullptr));
-        label_22->setText(QCoreApplication::translate("Form", "Joint 3", nullptr));
-        label_19->setText(QCoreApplication::translate("Form", "Gripper", nullptr));
-        gripperPositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
-        label_25->setText(QCoreApplication::translate("Form", "Joint 6", nullptr));
-        label_21->setText(QCoreApplication::translate("Form", "Joint 2", nullptr));
-        joint2PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
-        joint5PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        gripperNegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
+        joint4PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        label_23->setText(QCoreApplication::translate("Form", "Joint 3", nullptr));
         joint1PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        label_12->setText(QCoreApplication::translate("Form", "Joint 6", nullptr));
+        joint5NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
         joint6NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
         joint4NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
+        label_24->setText(QCoreApplication::translate("Form", "Joint 2", nullptr));
+        label_22->setText(QCoreApplication::translate("Form", "Joint 4", nullptr));
+        label_19->setText(QCoreApplication::translate("Form", "Gripper", nullptr));
+        gripperPositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        label_25->setText(QCoreApplication::translate("Form", "Joint 1", nullptr));
+        label_21->setText(QCoreApplication::translate("Form", "Joint 5", nullptr));
+        joint5PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        joint2PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        joint6PositivePushButton->setText(QCoreApplication::translate("Form", ">", nullptr));
+        joint1NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
+        joint3NegativePushButton->setText(QCoreApplication::translate("Form", "<", nullptr));
     } // retranslateUi
 
 };
@@ -1146,4 +1147,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // FORMFFDIJV_H
+#endif // FORMAUGLAS_H

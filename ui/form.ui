@@ -720,19 +720,19 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_30">
         <property name="text">
-         <string>J1</string>
+         <string>J6</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_33">
         <property name="text">
-         <string>J2</string>
+         <string>J5</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="joint1Label">
+       <widget class="QLabel" name="joint6Label">
         <property name="text">
          <string>000.0</string>
         </property>
@@ -744,7 +744,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_34">
         <property name="text">
-         <string>J3</string>
+         <string>J4</string>
         </property>
        </widget>
       </item>
@@ -768,55 +768,25 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_36">
         <property name="text">
-         <string>J5</string>
+         <string>J2</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_35">
         <property name="text">
-         <string>J4</string>
+         <string>J3</string>
         </property>
        </widget>
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="label_37">
         <property name="text">
-         <string>J6</string>
+         <string>J1</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLabel" name="joint2Label">
-        <property name="text">
-         <string>000.0</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="joint3Label">
-        <property name="text">
-         <string>000.0</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="joint4Label">
-        <property name="text">
-         <string>000.0</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
        <widget class="QLabel" name="joint5Label">
         <property name="text">
          <string>000.0</string>
@@ -826,8 +796,38 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="joint4Label">
+        <property name="text">
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="joint3Label">
+        <property name="text">
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="joint2Label">
+        <property name="text">
+         <string>000.0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="6" column="1">
-       <widget class="QLabel" name="joint6Label">
+       <widget class="QLabel" name="joint1Label">
         <property name="text">
          <string>000.0</string>
         </property>
@@ -1079,7 +1079,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,0,0">
       <item row="11" column="2">
-       <widget class="QPushButton" name="joint4PositivePushButton">
+       <widget class="QPushButton" name="joint3PositivePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1098,7 +1098,7 @@
        </widget>
       </item>
       <item row="13" column="0">
-       <widget class="QPushButton" name="joint5NegativePushButton">
+       <widget class="QPushButton" name="joint2NegativePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1136,7 +1136,7 @@
        </widget>
       </item>
       <item row="9" column="2">
-       <widget class="QPushButton" name="joint3PositivePushButton">
+       <widget class="QPushButton" name="joint4PositivePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1155,7 +1155,7 @@
        </widget>
       </item>
       <item row="7" column="1">
-       <widget class="QSlider" name="joint2Slider">
+       <widget class="QSlider" name="joint5Slider">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1185,12 +1185,12 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Joint 4</string>
+         <string>Joint 3</string>
         </property>
        </widget>
       </item>
       <item row="15" column="2">
-       <widget class="QPushButton" name="joint6PositivePushButton">
+       <widget class="QPushButton" name="joint1PositivePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1209,7 +1209,7 @@
        </widget>
       </item>
       <item row="11" column="1">
-       <widget class="QSlider" name="joint4Slider">
+       <widget class="QSlider" name="joint3Slider">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1239,12 +1239,12 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Joint 1</string>
+         <string>Joint 6</string>
         </property>
        </widget>
       </item>
       <item row="7" column="0">
-       <widget class="QPushButton" name="joint2NegativePushButton">
+       <widget class="QPushButton" name="joint5NegativePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1263,7 +1263,7 @@
        </widget>
       </item>
       <item row="9" column="1">
-       <widget class="QSlider" name="joint3Slider">
+       <widget class="QSlider" name="joint4Slider">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1285,7 +1285,7 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QPushButton" name="joint1NegativePushButton">
+       <widget class="QPushButton" name="joint6NegativePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1304,7 +1304,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QSlider" name="joint1Slider">
+       <widget class="QSlider" name="joint6Slider">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1332,7 +1332,7 @@
        </widget>
       </item>
       <item row="9" column="0">
-       <widget class="QPushButton" name="joint3NegativePushButton">
+       <widget class="QPushButton" name="joint4NegativePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1359,7 +1359,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Joint 5</string>
+         <string>Joint 2</string>
         </property>
        </widget>
       </item>
@@ -1372,7 +1372,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Joint 3</string>
+         <string>Joint 4</string>
         </property>
        </widget>
       </item>
@@ -1417,7 +1417,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Joint 6</string>
+         <string>Joint 1</string>
         </property>
        </widget>
       </item>
@@ -1430,30 +1430,11 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Joint 2</string>
+         <string>Joint 5</string>
         </property>
        </widget>
       </item>
       <item row="7" column="2">
-       <widget class="QPushButton" name="joint2PositivePushButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>50</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="13" column="2">
        <widget class="QPushButton" name="joint5PositivePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1472,8 +1453,27 @@
         </property>
        </widget>
       </item>
+      <item row="13" column="2">
+       <widget class="QPushButton" name="joint2PositivePushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&gt;</string>
+        </property>
+       </widget>
+      </item>
       <item row="13" column="1">
-       <widget class="QSlider" name="joint5Slider">
+       <widget class="QSlider" name="joint2Slider">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1495,7 +1495,7 @@
        </widget>
       </item>
       <item row="15" column="1">
-       <widget class="QSlider" name="joint6Slider">
+       <widget class="QSlider" name="joint1Slider">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1517,7 +1517,7 @@
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QPushButton" name="joint1PositivePushButton">
+       <widget class="QPushButton" name="joint6PositivePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>1</horstretch>
@@ -1543,6 +1543,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
         <property name="maximum">
          <number>100</number>
         </property>
@@ -1550,10 +1553,10 @@
          <number>1</number>
         </property>
         <property name="value">
-         <number>100</number>
+         <number>0</number>
         </property>
         <property name="sliderPosition">
-         <number>100</number>
+         <number>0</number>
         </property>
         <property name="tracking">
          <bool>false</bool>
@@ -1570,7 +1573,7 @@
        </widget>
       </item>
       <item row="15" column="0">
-       <widget class="QPushButton" name="joint6NegativePushButton">
+       <widget class="QPushButton" name="joint1NegativePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -1589,7 +1592,7 @@
        </widget>
       </item>
       <item row="11" column="0">
-       <widget class="QPushButton" name="joint4NegativePushButton">
+       <widget class="QPushButton" name="joint3NegativePushButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
           <horstretch>0</horstretch>

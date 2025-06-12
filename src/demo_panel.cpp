@@ -10,17 +10,6 @@ DemoPanel::DemoPanel(QWidget * parent)
       rc_()
 {
     ui_form_->setupUi(this);
-
-    // Ensure joint slider positions match robot's current joint values
-    std::vector<double> joint_positions;
-    rc_.getManipulatorJointPositions(joint_positions);
-    ui_form_->joint1Slider->setValue(joint_positions[0]);
-    ui_form_->joint2Slider->setValue(joint_positions[1]);
-    ui_form_->joint3Slider->setValue(joint_positions[2]);
-    ui_form_->joint4Slider->setValue(joint_positions[3]);
-    ui_form_->joint5Slider->setValue(joint_positions[4]);
-    ui_form_->joint6Slider->setValue(joint_positions[5]);
-
     // 
     connect(ui_form_->largeDriveAutopushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
     connect(ui_form_->smallDriveAutopushButton, SIGNAL(clicked(bool)), this, SLOT(moveToTarget(bool)));
@@ -158,7 +147,7 @@ DemoPanel::~DemoPanel()
 
 }
 
-void DemoPanel::publishMesh() const
+void DemoPanel::publishMesh()
 {
     visualization_msgs::msg::Marker marker;
     marker.header.frame_id = "aruco_36";
@@ -190,31 +179,60 @@ void DemoPanel::publishMesh() const
 }
 
 
-void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg) const
+void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg)
 {
     publishMesh();
     for (int i = 0; i < msg.name.size(); ++i)
     {
         if(msg.name[i]=="gripper_controller")
+        {
+            // ui_form_->gripperSlider->blockSignals(true);
+            // ui_form_->gripperSlider->setValue(msg.position[i]*(180.0/M_PI));
+            // ui_form_->gripperSlider->blockSignals(false);
             ui_form_->gripperAngleLabel->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
-    
+        }
         if(msg.name[i]=="joint1")
+        {
+            ui_form_->joint1Slider->blockSignals(true); // Block all signals from the slider
+            ui_form_->joint1Slider->setValue(msg.position[i]*(180.0/M_PI)); // Set the slider's value
+            ui_form_->joint1Slider->blockSignals(false); // Re-enable signals from the slider
             ui_form_->joint1Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
-
+        }
         if(msg.name[i]=="joint2")
+        {
+            ui_form_->joint2Slider->blockSignals(true);
+            ui_form_->joint2Slider->setValue(msg.position[i]*(180.0/M_PI));
+            ui_form_->joint2Slider->blockSignals(false);
             ui_form_->joint2Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
-
+        }
         if(msg.name[i]=="joint3")
+        {
+            ui_form_->joint3Slider->blockSignals(true);
+            ui_form_->joint3Slider->setValue(msg.position[i]*(180.0/M_PI));
+            ui_form_->joint3Slider->blockSignals(false);
             ui_form_->joint3Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
-
+        }
         if(msg.name[i]=="joint4")
+        {
+            ui_form_->joint4Slider->blockSignals(true);
+            ui_form_->joint4Slider->setValue(msg.position[i]*(180.0/M_PI));
+            ui_form_->joint4Slider->blockSignals(false);
             ui_form_->joint4Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
-
+        }
         if(msg.name[i]=="joint5")
+        {   
+            ui_form_->joint5Slider->blockSignals(true);
+            ui_form_->joint5Slider->setValue(msg.position[i]*(180.0/M_PI));
+            ui_form_->joint5Slider->blockSignals(false);
             ui_form_->joint5Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
-
+        }
         if(msg.name[i]=="joint6")
+        {
+            ui_form_->joint6Slider->blockSignals(true);
+            ui_form_->joint6Slider->setValue(msg.position[i]*(180.0/M_PI));
+            ui_form_->joint6Slider->blockSignals(false);
             ui_form_->joint6Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
+        }
     }
 
     geometry_msgs::msg::TransformStamped t;

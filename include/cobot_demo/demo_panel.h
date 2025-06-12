@@ -53,8 +53,8 @@ private:
   rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr drive_holder_pub_;
   std::shared_ptr<tf2_ros::TransformListener> tf_listener_{nullptr};
   std::unique_ptr<tf2_ros::Buffer> tf_buffer_;
-  void jointStateCallback(const sensor_msgs::msg::JointState & msg) const;
-  void publishMesh() const;
+  void jointStateCallback(const sensor_msgs::msg::JointState & msg);
+  void publishMesh();
 
 protected:
   Ui::Form* ui_form_;
