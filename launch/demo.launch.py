@@ -275,7 +275,7 @@ def generate_launch_description():
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[robot_controllers],
+        parameters=[robot_description, robot_controllers],
         output={
             "stdout": "screen",
             "stderr": "screen",
@@ -333,11 +333,11 @@ def generate_launch_description():
     )
 
 
-    camera_node = Node(
-        package="usb_cam",
-        executable="usb_cam_node_exe",
-        output="screen",
-    )
+    # camera_node = Node(
+    #     package="usb_cam",
+    #     executable="usb_cam_node_exe",
+    #     output="screen",
+    # )
     aruco_node = Node(
         package="cobot_demo",
         executable="aruco_node",
@@ -352,7 +352,7 @@ def generate_launch_description():
         robot_traj_controller_spawner,
         gripper_controller_spawner,
         move_group_node,
-        camera_node,
+        # camera_node,
         aruco_node,
     ]
 

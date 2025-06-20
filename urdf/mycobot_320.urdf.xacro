@@ -65,8 +65,8 @@
     <!-- Aruco frame for simulation-->
     <link name="aruco_36"/> <!-- Large drive-->
     <joint name="base-aruco-36" type="fixed">
-      <origin xyz="0.176 -0.344 0.124" rpy="${radians(0.361)} ${radians(1.711)} ${radians(-126.413)}"/>
-      <parent link="base_link"/>
+      <origin xyz="0.142 -0.249 0.046" rpy="${radians(5.040)} ${radians(1.109)} ${radians(-119.986)}"/>
+      <parent link="base_link"/>     
       <child link="aruco_36"/>
     </joint>
 

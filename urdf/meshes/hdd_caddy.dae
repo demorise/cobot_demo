@@ -5,15 +5,15 @@
             <author>VCGLab</author>
             <authoring_tool>VCGLib | MeshLab</authoring_tool>
         </contributor>
-        <created>Thu Jun 12 14:48:42 2025 GMT</created>
-        <modified>Thu Jun 12 14:48:42 2025 GMT</modified>
+        <created>Fri Jun 20 22:56:48 2025 GMT</created>
+        <modified>Fri Jun 20 22:56:48 2025 GMT</modified>
         <up_axis>Y_UP</up_axis>
     </asset>
     <library_geometries>
         <geometry id="shape0-lib" name="shape0">
             <mesh>
                 <source id="shape0-lib-positions" name="position">
-                    <float_array id="shape0-lib-positions-array" count="48">0 0 -0.071881 0.162052 0 -0.071881 0 0.11811 -0.071881 0.162052 0.11811 -0.071881 0 0 1.0021e-06 0.162052 0 1.0021e-06 0 0.11811 1.0021e-06 0.162052 0.11811 1.0021e-06 0 0 -0.071881 0.162052 0 -0.071881 0 0.11811 -0.071881 0.162052 0.11811 -0.071881 0 0 1.0021e-06 0.162052 0 1.0021e-06 0 0.11811 1.0021e-06 0.162052 0.11811 1.0021e-06</float_array>
+                    <float_array id="shape0-lib-positions-array" count="48">0 0 -0.071881 0.162052 0 -0.071881 0 0.0599999 -0.071881 0.162052 0.0599999 -0.071881 0 0 1.0021e-06 0.162052 0 1.0021e-06 0 0.0599999 1.0021e-06 0.162052 0.0599999 1.0021e-06 0 0 -0.071881 0.162052 0 -0.071881 0 0.0599999 -0.071881 0.162052 0.0599999 -0.071881 0 0 1.0021e-06 0.162052 0 1.0021e-06 0 0.0599999 1.0021e-06 0.162052 0.0599999 1.0021e-06</float_array>
                     <technique_common>
                         <accessor count="16" source="#shape0-lib-positions-array" stride="3">
                             <param name="X" type="float"/>

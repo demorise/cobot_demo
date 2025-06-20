@@ -17,7 +17,7 @@ DemoPanel::DemoPanel(QWidget * parent)
     // Gripper
     connect(ui_form_->openGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(openGripper(bool)));
     connect(ui_form_->closeGripperPushButton, SIGNAL(clicked(bool)), this, SLOT(closeGripper(bool)));
-    connect(ui_form_->gripperSlider, SIGNAL(valueChanged(int)), this, SLOT(controlGripperJaws(int)));
+    connect(ui_form_->gripperSlider, SIGNAL(sliderReleased()), this, SLOT(controlGripperJaws()));
     
     // Predefined robot poses
     connect(ui_form_->centerLeaningPushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
@@ -34,12 +34,12 @@ DemoPanel::DemoPanel(QWidget * parent)
     connect(ui_form_->preset1PushButton, SIGNAL(clicked(bool)), this, SLOT(goToPredefinedPose(bool)));
 
     // Joint sliders
-    connect(ui_form_->joint1Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
-    connect(ui_form_->joint2Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
-    connect(ui_form_->joint3Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
-    connect(ui_form_->joint4Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
-    connect(ui_form_->joint5Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
-    connect(ui_form_->joint6Slider, SIGNAL(valueChanged(int)), this, SLOT(jointSliderCallback(int)));
+    connect(ui_form_->joint1Slider, SIGNAL(sliderReleased()), this, SLOT(jointSliderCallback()));
+    connect(ui_form_->joint2Slider, SIGNAL(sliderReleased()), this, SLOT(jointSliderCallback()));
+    connect(ui_form_->joint3Slider, SIGNAL(sliderReleased()), this, SLOT(jointSliderCallback()));
+    connect(ui_form_->joint4Slider, SIGNAL(sliderReleased()), this, SLOT(jointSliderCallback()));
+    connect(ui_form_->joint5Slider, SIGNAL(sliderReleased()), this, SLOT(jointSliderCallback()));
+    connect(ui_form_->joint6Slider, SIGNAL(sliderReleased()), this, SLOT(jointSliderCallback()));
 
     // nh_ = std::make_shared<rclcpp::Node>("_", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
 
@@ -58,71 +58,6 @@ DemoPanel::DemoPanel(QWidget * parent)
     connect(ui_form_->joint5PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
     connect(ui_form_->joint6PositivePushButton, SIGNAL(clicked(bool)), this, SLOT(jointPushButtonCallback(bool)));
 }
-
-
-void DemoPanel::jointPushButtonCallback(bool clicked)
-{
-    double joint_delta = 5.0;
-
-    if (qobject_cast<QPushButton*>(sender()) == ui_form_->gripperNegativePushButton)
-    {
-        ui_form_->gripperSlider->setValue(ui_form_->gripperSlider->value() - joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint1NegativePushButton)
-    {
-        ui_form_->joint1Slider->setValue(ui_form_->joint1Slider->value() - joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint2NegativePushButton)
-    {
-        ui_form_->joint2Slider->setValue(ui_form_->joint2Slider->value() - joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint3NegativePushButton)
-    {
-        ui_form_->joint3Slider->setValue(ui_form_->joint3Slider->value() - joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint4NegativePushButton)
-    {
-        ui_form_->joint4Slider->setValue(ui_form_->joint4Slider->value() - joint_delta);
-    }
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint5NegativePushButton)
-    {
-        ui_form_->joint5Slider->setValue(ui_form_->joint5Slider->value() - joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint6NegativePushButton)
-    {
-        ui_form_->joint6Slider->setValue(ui_form_->joint6Slider->value() - joint_delta);
-    }  
-    if (qobject_cast<QPushButton*>(sender()) == ui_form_->gripperPositivePushButton)
-    {
-        ui_form_->gripperSlider->setValue(ui_form_->gripperSlider->value() + joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint1PositivePushButton)
-    {
-        ui_form_->joint1Slider->setValue(ui_form_->joint1Slider->value() + joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint2PositivePushButton)
-    {
-        ui_form_->joint2Slider->setValue(ui_form_->joint2Slider->value() + joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint3PositivePushButton)
-    {
-        ui_form_->joint3Slider->setValue(ui_form_->joint3Slider->value() + joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint4PositivePushButton)
-    {
-        ui_form_->joint4Slider->setValue(ui_form_->joint4Slider->value() + joint_delta);
-    }
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint5PositivePushButton)
-    {
-        ui_form_->joint5Slider->setValue(ui_form_->joint5Slider->value() + joint_delta);
-    } 
-    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint6PositivePushButton)
-    {
-        ui_form_->joint6Slider->setValue(ui_form_->joint6Slider->value() + joint_delta);
-    } 
-}
-
-
 
 void DemoPanel::onInitialize()
 {
@@ -157,8 +92,8 @@ void DemoPanel::publishMesh()
     marker.type = visualization_msgs::msg::Marker::MESH_RESOURCE;
     marker.mesh_resource = "package://cobot_demo/urdf/meshes/hdd_caddy.dae";
     marker.action = visualization_msgs::msg::Marker::ADD;
-    marker.pose.position.x = 0.03;
-    marker.pose.position.y = -0.03;
+    marker.pose.position.x = 0.0254;
+    marker.pose.position.y = 0.0254;
     marker.pose.position.z = 0;
     tf2::Quaternion q;
     q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 90.0*(M_PI/180.0));
@@ -181,56 +116,36 @@ void DemoPanel::publishMesh()
 
 void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg)
 {
+    joint_msg_ = msg;
     publishMesh();
     for (int i = 0; i < msg.name.size(); ++i)
     {
         if(msg.name[i]=="gripper_controller")
         {
-            // ui_form_->gripperSlider->blockSignals(true);
-            // ui_form_->gripperSlider->setValue(msg.position[i]*(180.0/M_PI));
-            // ui_form_->gripperSlider->blockSignals(false);
             ui_form_->gripperAngleLabel->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
         if(msg.name[i]=="joint1")
         {
-            ui_form_->joint1Slider->blockSignals(true); // Block all signals from the slider
-            ui_form_->joint1Slider->setValue(msg.position[i]*(180.0/M_PI)); // Set the slider's value
-            ui_form_->joint1Slider->blockSignals(false); // Re-enable signals from the slider
             ui_form_->joint1Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
         if(msg.name[i]=="joint2")
         {
-            ui_form_->joint2Slider->blockSignals(true);
-            ui_form_->joint2Slider->setValue(msg.position[i]*(180.0/M_PI));
-            ui_form_->joint2Slider->blockSignals(false);
             ui_form_->joint2Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
         if(msg.name[i]=="joint3")
         {
-            ui_form_->joint3Slider->blockSignals(true);
-            ui_form_->joint3Slider->setValue(msg.position[i]*(180.0/M_PI));
-            ui_form_->joint3Slider->blockSignals(false);
             ui_form_->joint3Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
         if(msg.name[i]=="joint4")
         {
-            ui_form_->joint4Slider->blockSignals(true);
-            ui_form_->joint4Slider->setValue(msg.position[i]*(180.0/M_PI));
-            ui_form_->joint4Slider->blockSignals(false);
             ui_form_->joint4Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
         if(msg.name[i]=="joint5")
         {   
-            ui_form_->joint5Slider->blockSignals(true);
-            ui_form_->joint5Slider->setValue(msg.position[i]*(180.0/M_PI));
-            ui_form_->joint5Slider->blockSignals(false);
             ui_form_->joint5Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
         if(msg.name[i]=="joint6")
         {
-            ui_form_->joint6Slider->blockSignals(true);
-            ui_form_->joint6Slider->setValue(msg.position[i]*(180.0/M_PI));
-            ui_form_->joint6Slider->blockSignals(false);
             ui_form_->joint6Label->setText(QString::number(msg.position[i]*(180.0/M_PI), 'f', 1));
         }
     }
@@ -259,6 +174,40 @@ void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg)
     }
 }
 
+void DemoPanel::updateJointSliders()
+{
+    for (int i = 0; i < joint_msg_.name.size(); ++i)
+    {
+        if(joint_msg_.name[i]=="gripper_controller")
+        {
+            ui_form_->gripperSlider->setValue(joint_msg_.position[i]*(180.0/M_PI));
+        }
+        if(joint_msg_.name[i]=="joint1")
+        {
+            ui_form_->joint1Slider->setValue(joint_msg_.position[i]*(180.0/M_PI)); // Set the slider's value
+        }
+        if(joint_msg_.name[i]=="joint2")
+        {
+            ui_form_->joint2Slider->setValue(joint_msg_.position[i]*(180.0/M_PI));
+        }
+        if(joint_msg_.name[i]=="joint3")
+        {
+            ui_form_->joint3Slider->setValue(joint_msg_.position[i]*(180.0/M_PI));
+        }
+        if(joint_msg_.name[i]=="joint4")
+        {
+            ui_form_->joint4Slider->setValue(joint_msg_.position[i]*(180.0/M_PI));
+        }
+        if(joint_msg_.name[i]=="joint5")
+        {   
+            ui_form_->joint5Slider->setValue(joint_msg_.position[i]*(180.0/M_PI));
+        }
+        if(joint_msg_.name[i]=="joint6")
+        {
+            ui_form_->joint6Slider->setValue(joint_msg_.position[i]*(180.0/M_PI));
+        }
+    }
+}
 
 void DemoPanel::moveToTarget(bool clicked)
 {
@@ -277,6 +226,7 @@ void DemoPanel::moveToTarget(bool clicked)
         rc_.planToCartesianPose(target_pose);
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
+        updateJointSliders();
     });
 
     t.detach();
@@ -292,46 +242,53 @@ void DemoPanel::closeGripper(bool clicked)
     ui_form_->gripperSlider->setValue(0);
 }
 
-void DemoPanel::controlGripperJaws(int i)
+void DemoPanel::controlGripperJaws()
 {
-    std::thread t = std::thread([this, i]()
+    std::thread t = std::thread([this]()
         {
-            rc_.setGripperPosition({(i*0.63)-63.0});
+            rc_.setGripperPosition({(ui_form_->gripperSlider->sliderPosition()*0.63)-63.0});
         });
 
     t.detach();
 }
 
-void DemoPanel::jointSliderCallback(int i)
+void DemoPanel::jointSliderCallback()
 {
     int joint_idx;
+    int joint_value;
     if (qobject_cast<QSlider*>(sender()) == ui_form_->joint1Slider)
     {
         joint_idx = 0;
+        joint_value = ui_form_->joint1Slider->sliderPosition();
     }
     else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint2Slider)
     {
         joint_idx = 1;
+        joint_value = ui_form_->joint2Slider->sliderPosition();
     }
     else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint3Slider)
     {
         joint_idx = 2;
+        joint_value = ui_form_->joint3Slider->sliderPosition();
     }
     else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint4Slider)
     {
         joint_idx = 3;
+        joint_value = ui_form_->joint4Slider->sliderPosition();
     }
     else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint5Slider)
     {
         joint_idx = 4;
+        joint_value = ui_form_->joint5Slider->sliderPosition();
     }
     else if (qobject_cast<QSlider*>(sender()) == ui_form_->joint6Slider)
     {
         joint_idx = 5;
+        joint_value = ui_form_->joint6Slider->sliderPosition();
     }
     std::vector<double> joints;
     rc_.getManipulatorJointPositions(joints);
-    joints[joint_idx] = i*1.0;
+    joints[joint_idx] = joint_value*1.0;
 
     std::thread t = std::thread([this, joints]()
     {
@@ -395,23 +352,83 @@ void DemoPanel::goToPredefinedPose(bool clicked)
     {
         joints = {-39.5, 39.4, -112.2, 29.4, 94.4, 0.3};
     }
-
-
     else
     {
         RCLCPP_ERROR(nh_->get_logger(), "Invalid pose");
         return;
-        //joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
     }
 
     std::thread t = std::thread([this, joints]()
     {
         rc_.planToJointPose(joints);
-        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        rclcpp::sleep_for(std::chrono::milliseconds(1000));
         rc_.executeTrajectory();
+        updateJointSliders();
     });
 
     t.detach();
+}
+
+void DemoPanel::jointPushButtonCallback(bool clicked)
+{
+    double joint_delta = 5.0;
+
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->gripperNegativePushButton)
+    {
+        ui_form_->gripperSlider->setValue(ui_form_->gripperSlider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint1NegativePushButton)
+    {
+        ui_form_->joint1Slider->setValue(ui_form_->joint1Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint2NegativePushButton)
+    {
+        ui_form_->joint2Slider->setValue(ui_form_->joint2Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint3NegativePushButton)
+    {
+        ui_form_->joint3Slider->setValue(ui_form_->joint3Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint4NegativePushButton)
+    {
+        ui_form_->joint4Slider->setValue(ui_form_->joint4Slider->value() - joint_delta);
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint5NegativePushButton)
+    {
+        ui_form_->joint5Slider->setValue(ui_form_->joint5Slider->value() - joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint6NegativePushButton)
+    {
+        ui_form_->joint6Slider->setValue(ui_form_->joint6Slider->value() - joint_delta);
+    }  
+    if (qobject_cast<QPushButton*>(sender()) == ui_form_->gripperPositivePushButton)
+    {
+        ui_form_->gripperSlider->setValue(ui_form_->gripperSlider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint1PositivePushButton)
+    {
+        ui_form_->joint1Slider->setValue(ui_form_->joint1Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint2PositivePushButton)
+    {
+        ui_form_->joint2Slider->setValue(ui_form_->joint2Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint3PositivePushButton)
+    {
+        ui_form_->joint3Slider->setValue(ui_form_->joint3Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint4PositivePushButton)
+    {
+        ui_form_->joint4Slider->setValue(ui_form_->joint4Slider->value() + joint_delta);
+    }
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint5PositivePushButton)
+    {
+        ui_form_->joint5Slider->setValue(ui_form_->joint5Slider->value() + joint_delta);
+    } 
+    else if (qobject_cast<QPushButton*>(sender()) == ui_form_->joint6PositivePushButton)
+    {
+        ui_form_->joint6Slider->setValue(ui_form_->joint6Slider->value() + joint_delta);
+    } 
 }
 
 void DemoPanel::releaseObject(bool clicked)

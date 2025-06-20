@@ -38,11 +38,11 @@ protected Q_SLOTS:
   void moveToTarget(bool clicked);
   void openGripper(bool clicked);
   void closeGripper(bool clicked);
-  void controlGripperJaws(int i);
+  void controlGripperJaws();
   void gripObject(bool clicked);
   void releaseObject(bool clicked);
   void goToPredefinedPose(bool clicked);
-  void jointSliderCallback(int i);
+  void jointSliderCallback();
   void jointPushButtonCallback(bool clicked);
 
 private:
@@ -55,6 +55,8 @@ private:
   std::unique_ptr<tf2_ros::Buffer> tf_buffer_;
   void jointStateCallback(const sensor_msgs::msg::JointState & msg);
   void publishMesh();
+  void updateJointSliders();
+  sensor_msgs::msg::JointState joint_msg_;
 
 protected:
   Ui::Form* ui_form_;

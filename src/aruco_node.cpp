@@ -30,7 +30,7 @@ public:
 
     std::string camera_topic = "/image_raw";
     std::string output_topic = "/aruco_image";
-    marker_size_ = 0.0254;
+    marker_size_ = 0.0254*2.0;
 
     // Initialize ArUco detector
     dictionary_ = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
@@ -114,9 +114,9 @@ private:
             t_target.header.frame_id = "aruco_36";
             t_target.child_frame_id = "large_drive";
             t_target.transform.translation.x = 0;
-            t_target.transform.translation.y = 0;
-            t_target.transform.translation.z = 0;
-            q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
+            t_target.transform.translation.y = 0.06985;
+            t_target.transform.translation.z = 0.0381;
+            q.setRPY(-90.0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
         }
         else if(marker_id==165)
         {
