@@ -127,15 +127,23 @@ private:
             t_target.transform.translation.z = 0;
             q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
         }
-
-
         q.normalize();
         geometry_msgs::msg::Quaternion msg_quat = tf2::toMsg(q);
         t_target.header.stamp = node_->get_clock()->now();
+        t_target.transform.rotation = msg_quat;
+        tf_broadcaster_->sendTransform(t_target);
 
 
-
-
+        // approach target
+        t_target.header.frame_id = t_target.child_frame_id;
+        t_target.child_frame_id = t_target.child_frame_id + "_approach";
+        t_target.transform.translation.x = 0;
+        t_target.transform.translation.y = 0;
+        t_target.transform.translation.z = -0.03;
+        q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
+        q.normalize();
+        msg_quat = tf2::toMsg(q);
+        t_target.header.stamp = node_->get_clock()->now();
         t_target.transform.rotation = msg_quat;
         tf_broadcaster_->sendTransform(t_target);
     };

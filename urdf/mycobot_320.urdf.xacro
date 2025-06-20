@@ -85,6 +85,13 @@
       <child link="large_drive"/>
     </joint>
 
+    <link name="large_drive_approach"/>
+    <joint name="large_drive-approach" type="fixed">
+      <origin xyz="0.0 0.0 -0.03" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+      <parent link="large_drive"/>
+      <child link="large_drive_approach"/>
+    </joint>
+
     <link name="small_drive"/>
     <joint name="aruco-small_drive" type="fixed">
       <origin xyz="0.0 0.0 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>

@@ -221,8 +221,18 @@ void DemoPanel::moveToTarget(bool clicked)
         target_frame = "small_drive";
     } 
     std::thread t = std::thread([this, target_frame](){
+        geometry_msgs::msg::Pose target_pose_approach;
         geometry_msgs::msg::Pose target_pose;
+        rc_.getTargetPose(target_pose_approach, target_frame+"_approach");
         rc_.getTargetPose(target_pose, target_frame);
+
+        rc_.planToCartesianPose(target_pose_approach);
+        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        rc_.executeTrajectory();
+        updateJointSliders();
+
+        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        
         rc_.planToCartesianPose(target_pose);
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
