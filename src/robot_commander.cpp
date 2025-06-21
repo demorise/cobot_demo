@@ -62,10 +62,7 @@ namespace robot_commander
 
   bool RobotCommander::planToCartesianPose(geometry_msgs::msg::Pose target_pose)
   {
-    // Create the MoveIt MoveGroup Interface
-    // moveit::planning_interface::MoveGroupInterface move_group_interface = moveit::planning_interface::MoveGroupInterface(node_, "arm_group");
-
-    // Set a target Pose for MOveIt
+    // Set a target Pose for MoveIt
     move_group_interface_.setPoseTarget(target_pose);
 
     auto const [success, plan] = [this] {
@@ -84,6 +81,19 @@ namespace robot_commander
       RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
       return false;
     }
+  }
+
+  bool RobotCommander::planCartesianPath(std::vector<geometry_msgs::msg::Pose> waypoints)
+  {
+    // We want the Cartesian path to be interpolated at a resolution of 1 cm
+    // which is why we will specify 0.01 as the max step in Cartesian
+    // translation.  We will specify the jump threshold as 0.0, effectively disabling it.
+    moveit_msgs::msg::RobotTrajectory trajectory;
+    const double jump_threshold = 0.0;
+    const double eef_step = 0.01;
+    double fraction = move_group_interface_.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
+    motion_plan_.trajectory_ = trajectory;
+    return true;
   }
 
   bool RobotCommander::executeTrajectory()

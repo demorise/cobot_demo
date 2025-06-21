@@ -233,8 +233,20 @@ void DemoPanel::moveToTarget(bool clicked)
         updateJointSliders();
 
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
+       
+
+
+
+
+
+
+        // rc_.planToCartesianPose(target_pose);
+
+
+        std::vector<geometry_msgs::msg::Pose> waypoints;
+        waypoints.push_back(target_pose);
+        rc_.planCartesianPath(waypoints);
         
-        rc_.planToCartesianPose(target_pose);
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
         updateJointSliders();

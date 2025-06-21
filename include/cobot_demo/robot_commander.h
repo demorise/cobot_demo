@@ -34,6 +34,8 @@ public:
 
   bool planToCartesianPose(geometry_msgs::msg::Pose target_pose);
 
+  bool planCartesianPath(std::vector<geometry_msgs::msg::Pose> waypoints);
+
   bool executeTrajectory();
 
   bool setGripperPosition(const std::vector<double>& joint_positions);
