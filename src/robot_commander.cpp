@@ -8,7 +8,8 @@ namespace robot_commander
     :node_(std::make_shared<rclcpp::Node>("robot_commander", 
            rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true))),
      move_group_interface_(node_, "arm_group"),
-     move_group_interface_gripper_(node_, "gripper_group")
+     move_group_interface_gripper_(node_, "gripper_group"),
+     planning_scene_interface_(std::make_unique<moveit::planning_interface::PlanningSceneInterface>())
   {
     executor_ = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
     thread_ = std::make_unique<std::thread>([&]() 
@@ -94,6 +95,55 @@ namespace robot_commander
     double fraction = move_group_interface_.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
     motion_plan_.trajectory_ = trajectory;
     return true;
+  }
+
+  void RobotCommander::addCollisionMesh()
+  {
+    // planning_scene_monitor::LockedPlanningSceneRW ls(planning_scene_monitor_);
+    moveit_msgs::msg::CollisionObject collision_object;
+    collision_object.header.frame_id = "aruco_36";
+    collision_object.pose.orientation.w = 1.0;
+    collision_object.id = "large_drive";
+
+    std::string package_path = ament_index_cpp::get_package_share_directory("cobot_demo");
+    std::string mesh_path = package_path + "/urdf/meshes/hdd_caddy.dae";
+    shapes::Mesh* c_mesh = shapes::createMeshFromResource("file://" + mesh_path);
+    shapes::ShapeMsg mesh_msg;
+    shapes::constructMsgFromShape(c_mesh, mesh_msg);
+    shape_msgs::msg::Mesh custom_mesh = boost::get<shape_msgs::msg::Mesh>(mesh_msg);
+    std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
+
+    for (size_t i = 0; i < custom_mesh.vertices.size(); ++i)
+    {
+      custom_mesh.vertices[i].x = custom_mesh.vertices[i].x;
+      custom_mesh.vertices[i].y = custom_mesh.vertices[i].y;
+      custom_mesh.vertices[i].z = custom_mesh.vertices[i].z;
+    }
+
+    collision_object.meshes.push_back(custom_mesh);
+    geometry_msgs::msg::Pose pose;
+    pose.position.x = 0.0254;
+    pose.position.y = 0.0254;
+    pose.position.z = 0;
+    tf2::Quaternion q;
+    q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 90.0*(M_PI/180.0));
+    q.normalize();
+    geometry_msgs::msg::Quaternion msg_quat = tf2::toMsg(q);
+    pose.orientation = msg_quat; 
+    collision_object.mesh_poses.push_back(pose);
+    collision_object.operation = collision_object.ADD;
+    collision_objects.push_back(collision_object);
+    planning_scene_interface_->applyCollisionObjects(collision_objects);
+  }
+
+  void RobotCommander::removeCollisionMesh()
+  {
+    std::vector<moveit_msgs::msg::CollisionObject> collision_objects;
+    moveit_msgs::msg::CollisionObject collision_object;
+    collision_object.id = "large_drive";                
+    collision_object.operation = collision_object.REMOVE;
+    collision_objects.push_back(collision_object);
+    planning_scene_interface_->applyCollisionObjects(collision_objects);
   }
 
   bool RobotCommander::executeTrajectory()

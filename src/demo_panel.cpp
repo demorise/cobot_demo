@@ -227,22 +227,15 @@ void DemoPanel::moveToTarget(bool clicked)
         rc_.getTargetPose(target_pose_approach, target_frame+"_approach");
         rc_.getTargetPose(target_pose, target_frame);
 
+        rc_.addCollisionMesh();        
+
         rc_.planToCartesianPose(target_pose_approach);
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
         updateJointSliders();
 
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
-       
-
-
-
-
-
-
         // rc_.planToCartesianPose(target_pose);
-
-
         std::vector<geometry_msgs::msg::Pose> waypoints;
         waypoints.push_back(target_pose);
         rc_.planCartesianPath(waypoints);
@@ -250,6 +243,8 @@ void DemoPanel::moveToTarget(bool clicked)
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
         updateJointSliders();
+
+        rc_.removeCollisionMesh();
     });
 
     t.detach();

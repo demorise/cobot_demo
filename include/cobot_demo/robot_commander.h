@@ -44,6 +44,10 @@ public:
 
   bool getManipulatorJointPositions(std::vector<double>& joint_positions);
 
+  void addCollisionMesh();
+
+  void removeCollisionMesh();
+
 private:
   geometry_msgs::msg::Pose applyRotation(const geometry_msgs::msg::Pose& pose, double roll, double pitch, double yaw);
 
@@ -63,6 +67,8 @@ private:
   moveit::planning_interface::MoveGroupInterface move_group_interface_;
 
   moveit::planning_interface::MoveGroupInterface move_group_interface_gripper_;
+
+  std::unique_ptr<moveit::planning_interface::PlanningSceneInterface> planning_scene_interface_;
 
   moveit::planning_interface::MoveGroupInterface::Plan motion_plan_;
 
