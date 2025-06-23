@@ -117,7 +117,7 @@ void DemoPanel::publishMesh()
 void DemoPanel::jointStateCallback(const sensor_msgs::msg::JointState & msg)
 {
     joint_msg_ = msg;
-    publishMesh();
+    // publishMesh();
     for (int i = 0; i < msg.name.size(); ++i)
     {
         if(msg.name[i]=="gripper_controller")
@@ -223,24 +223,46 @@ void DemoPanel::moveToTarget(bool clicked)
     } 
     std::thread t = std::thread([this, target_frame](){
         geometry_msgs::msg::Pose target_pose_approach;
+        geometry_msgs::msg::Pose target_pose_retract;
         geometry_msgs::msg::Pose target_pose;
         rc_.getTargetPose(target_pose_approach, target_frame+"_approach");
+        rc_.getTargetPose(target_pose_approach, target_frame+"_retract");
         rc_.getTargetPose(target_pose, target_frame);
 
         rc_.addCollisionMesh();        
 
+        // Go to approach 
         rc_.planToCartesianPose(target_pose_approach);
         rclcpp::sleep_for(std::chrono::milliseconds(1500));
         rc_.executeTrajectory();
         updateJointSliders();
 
-        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        // Go to target
+        rclcpp::sleep_for(std::chrono::milliseconds(2000));
         // rc_.planToCartesianPose(target_pose);
         std::vector<geometry_msgs::msg::Pose> waypoints;
         waypoints.push_back(target_pose);
         rc_.planCartesianPath(waypoints);
-        
-        rclcpp::sleep_for(std::chrono::milliseconds(1500));
+        rclcpp::sleep_for(std::chrono::milliseconds(500));
+        rc_.executeTrajectory();
+        updateJointSliders();
+
+        // Close gripper
+        rc_.setGripperPosition({(ui_form_->gripperSlider->sliderPosition()*0.63)-63.0});
+
+        // Retract
+        rclcpp::sleep_for(std::chrono::milliseconds(2000));
+        waypoints.clear();
+        waypoints.push_back(target_pose_retract);
+        rc_.planCartesianPath(waypoints);
+        rclcpp::sleep_for(std::chrono::milliseconds(500));
+        rc_.executeTrajectory();
+        updateJointSliders();
+
+        // Move to crusher location
+        std::vector<double> joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+        rc_.planToJointPose(joints);
+        rclcpp::sleep_for(std::chrono::milliseconds(1000));
         rc_.executeTrajectory();
         updateJointSliders();
 
@@ -475,6 +497,7 @@ void DemoPanel::goToPredefinedPose(bool clicked)
         rclcpp::sleep_for(std::chrono::milliseconds(1000));
         rc_.executeTrajectory();
         updateJointSliders();
+        publishMesh();
     });
 
     t.detach();

@@ -115,7 +115,7 @@ private:
             t_target.child_frame_id = "large_drive";
             t_target.transform.translation.x = 0;
             t_target.transform.translation.y = 0.06985;
-            t_target.transform.translation.z = 0.0381;
+            t_target.transform.translation.z = 0.0381*0.2;
             q.setRPY(-90.0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
         }
         else if(marker_id==165)
@@ -139,7 +139,20 @@ private:
         t_target.child_frame_id = t_target.child_frame_id + "_approach";
         t_target.transform.translation.x = 0;
         t_target.transform.translation.y = 0;
-        t_target.transform.translation.z = -0.03;
+        t_target.transform.translation.z = -0.03-0.0508;
+        q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
+        q.normalize();
+        msg_quat = tf2::toMsg(q);
+        t_target.header.stamp = node_->get_clock()->now();
+        t_target.transform.rotation = msg_quat;
+        tf_broadcaster_->sendTransform(t_target);
+
+
+        // retract
+        t_target.child_frame_id = t_target.header.frame_id + "_retract";
+        t_target.transform.translation.x = 0;
+        t_target.transform.translation.y = -0.05;
+        t_target.transform.translation.z = 0;
         q.setRPY(0*(M_PI/180.0), 0*(M_PI/180.0), 0*(M_PI/180.0));
         q.normalize();
         msg_quat = tf2::toMsg(q);

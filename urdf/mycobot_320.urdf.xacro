@@ -62,22 +62,21 @@
       <child link="camera"/>
     </joint>
 
-    <!-- Aruco frame for simulation-->
-    <link name="aruco_36"/> <!-- Large drive-->
+    <!-- Frames for simulation-->
+<!--     <link name="aruco_36"/>
     <joint name="base-aruco-36" type="fixed">
       <origin xyz="0.142 -0.249 0.046" rpy="${radians(5.040)} ${radians(1.109)} ${radians(-119.986)}"/>
       <parent link="base_link"/>     
       <child link="aruco_36"/>
     </joint>
 
-    <link name="aruco_165"/> <!-- Small drive-->
+    <link name="aruco_165"/>
     <joint name="base-aruco-165" type="fixed">
       <origin xyz="0.267 0.219 0.066" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
       <parent link="base_link"/>
       <child link="aruco_165"/>
     </joint>
 
-    <!-- Target frame for simulation-->
     <link name="large_drive"/>
     <joint name="aruco-large_drive" type="fixed">
       <origin xyz="0.0 0.085 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
@@ -91,12 +90,18 @@
       <parent link="large_drive"/>
       <child link="large_drive_approach"/>
     </joint>
+    <link name="large_drive_retract"/>
+    <joint name="large_drive-retract" type="fixed">
+      <origin xyz="0.0 -0.05 0.0" rpy="${radians(0)} ${radians(0)} ${radians(0)}"/>
+      <parent link="large_drive"/>
+      <child link="large_drive_retract"/>
+    </joint>
 
     <link name="small_drive"/>
     <joint name="aruco-small_drive" type="fixed">
       <origin xyz="0.0 0.0 0.06" rpy="${radians(-90)} ${radians(0)} ${radians(0)}"/>
       <parent link="aruco_165"/>
       <child link="small_drive"/>
-    </joint>
+    </joint> -->
 
 </robot>
